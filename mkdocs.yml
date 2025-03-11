@@ -1,0 +1,167 @@
+site_name: Rex's Blog
+site_url: https://rrrexyz.github.io/MyBlog
+site_author: Rex
+
+nav: 
+  - 首页: index.md
+  - 博客:
+    - blog/index.md
+    - 标签归类: tag.md
+  - 作品:
+    - work/index.md
+  - 收藏:
+    - collect/index.md
+  - 待办:
+    - todo/index.md
+
+plugins:
+  # - glightbox
+  - search
+  - offline
+  - blog:
+      post_date_format: full #时间
+      draft: true
+      draft_if_future_date: true #自动将具有未来日期的帖子标记为草稿
+      post_readtime: true
+      post_readtime_words_per_minute: 265  #计算帖子的阅读时间时读者每分钟预计阅读的字数
+      post_url_format: "{date}/{slug}"
+      categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      categories_toc: true
+      # pagination_per_page: 5
+      pagination_url_format: "page/{page}"
+      authors_file: "{blog}/.authors.yml"  #作者信息
+      blog_toc: true
+      post_excerpt_separator: <!-- more -->
+      archive_date_format: yyyy年
+      draft: false
+      draft_if_future_date: true
+      archive_date_format:  yyyy年MM月
+      archive_url_date_format: yyyy年MM月
+  - tags:
+      tags_file: tag.md  #分类标签
+      
+
+theme:
+  language: zh
+  favicon: images/R.png
+  logo: images/博客.png
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: light-green
+      toggle:
+        icon: material/lightbulb
+        name: 切换到夜间模式
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: green
+      toggle:
+        icon: material/lightbulb-outline
+        name: 切换到日间模式
+  features:
+    # - announce.dismiss #呈现可标记为由用户读取的临时公告，可以包含一个用于取消当前公告的按钮
+    - navigation.instant 
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.instant.preview
+    #- header.autohide  #自动隐藏
+    - navigation.path #显示当前页面的路径（面包屑）
+    - navigation.prune #导航修剪，构建文件中仅包含可见的导航项
+    - navigation.tracking #地址栏中的 URL 将自动更新为在目录中突出显示的活动锚点
+    - navigation.tabs #顶级部分将呈现在上面视口标题下方的菜单层中，但在移动设备上保持原样
+    - navigation.tabs.sticky  #启用粘性选项卡后，导航选项卡将锁定在标题下方，并在向下滚动时始终保持可见
+    - navigation.sections #启用部分后，顶级部分在边栏中呈现为1220px以上视口的组，但在移动设备上保持原样
+    - navigation.top # 返回顶部的按钮 在上滑时出现
+    - navigation.footer #页脚将呈现在边栏中，但在移动设备上保持原样
+    - search.suggest # 搜索输入一些字母时推荐补全整个单词
+    - search.highlight # 搜索出的文章关键词加入高亮
+    - search.share #搜索分享按钮
+    - navigation.expand # 打开Tab时左侧目录全部展开
+    - navigation.indexes #启用节索引页后，可以将文档直接附加到节
+    - content.tabs.link
+    - content.tooltips
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - toc.follow # 目录跟随滚动
+
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - admonition
+  - def_list
+  - footnotes
+  - md_in_html
+  - meta # 支持Markdown文件上方自定义标题标签等
+  - pymdownx.caret
+  - pymdownx.betterem
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets
+  - pymdownx.smartsymbols
+  - pymdownx.tilde
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format # 代码块高亮插件
+  - pymdownx.arithmatex:  # latex支持
+      generic: true
+  # - toc:
+  #     permalink: true # 固定标题位置为当前位置
+  - pymdownx.highlight: # 代码块高亮
+      anchor_linenums: true
+      linenums: true # 显示行号
+      auto_title: true # 显示编程语言名称
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  # - markdown.extensions.toc:
+  #     slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+  #     permalink: "\ue157"
+
+
+
+extra_javascript:
+  - scripts/extra.js  #自定义javascript
+  # - javascripts/mathjax.js  #Latex支持
+  - https://polyfill.io/v3/polyfill.min.js?features=es6   #Latex支持
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js   #Latex支持
+  - ckplayer/js/ckplayer.js #播放器配置
+  - https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js  #gitalk支持
+  - https://cdn.jsdelivr.net/npm/mermaid@10.0.2/dist/add-html-label-6e56ed67.min.js #忘了
+
+extra_css:
+  - styles/extra.css # 自定义CSS
+  # - stylesheets/link.css  #友链配置
+  # - stylesheets/video.css #播放器可选配置
+  - https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.css #gitalk支持
+  - ckplayer/css/ckplayer.css   #播放器配置
+  - https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css  # font-awesome表情支持
+  # - https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css  #分享支持
+
+  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css  #字体
+  # - https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css #字体
+  # - https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.0.0/style.css  #字体
+  # - https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css  #字体
+
+
+# extra:
+#   generator: false
+
+copyright: 
+  Copyright &copy; 2009-2019 Aliyun.com 版权所有 ICP证
+  <a href="https://beian.miit.gov.cn" target=_blank>苏ICP备2024141207号-1</a>
