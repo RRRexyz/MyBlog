@@ -101,3 +101,39 @@ npm run electron:build
 ```
 
 生成的构建文件在dist_electron目录下的win-unpacked文件夹下，可以直接运行。
+
+## 修改图标
+
+对于开发环境下的窗口，在background.js中添加：
+
+```javascript
+async function createWindow() {
+  // Create the browser window.
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    autoHideMenuBar: true,
+    icon: path.join(__dirname, '../public/image.png'),  // 这里指定图标路径
+    ...
+```
+
+对于生产环境下的图标，在vue.config.js中添加：
+
+```javascript
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true,
+  pluginOptions: {
+    electronBuilder: {
+      nodeIntegration: true,
+      builderOptions: {
+        appId: 'com.example.app',
+        win: { 
+          target: 'nsis',
+          icon: 'public/image.png'  // 这里指定图标路径
+        }
+      }
+    }
+  },
+})
+```
