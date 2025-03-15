@@ -1,7 +1,7 @@
 ---
 date:
   created: 2025-03-04
-  updated: 2025-03-07
+  updated: 2025-03-15
 authors:
   - Rexyz
 categories:
@@ -134,7 +134,7 @@ module.exports = defineConfig({
         }
       }
     }
-  },
+  }
 })
 ```
 
