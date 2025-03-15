@@ -1005,9 +1005,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#windows" class="md-nav__link">
     <span class="md-ellipsis">
-      修改图标
+      Windows 系统下修改图标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linuxubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux(Ubuntu) 下修改图标
     </span>
   </a>
   
@@ -1098,7 +1107,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 1 分钟阅读时间
+                              需要 2 分钟阅读时间
                             
                           </span>
                         </div>
@@ -1205,7 +1214,7 @@
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">npm</span> <span class="n">run</span> <span class="n">electron</span><span class="p">:</span><span class="n">build</span>
 </code></pre></div></td></tr></table></div>
 <p>生成的构建文件在dist_electron目录下的win-unpacked文件夹下，可以直接运行。</p>
-<h2 id="_5">修改图标</h2>
+<h2 id="windows">Windows 系统下修改图标</h2>
 <p>对于开发环境下的窗口，在background.js中添加：</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
 <span class="normal"><a href="#__codelineno-9-2">2</a></span>
@@ -1256,6 +1265,31 @@
 <a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="w">  </span><span class="p">},</span>
 <a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="p">})</span>
 </code></pre></div></td></tr></table></div>
+<h2 id="linuxubuntu">Linux(Ubuntu) 下修改图标</h2>
+<p>在~/.local/share/applications/或者/usr/share/applications/下创建.desktop文件，前者适用于当前用户目录，后者适用于系统目录，文件内容如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span>
+<span class="normal"><a href="#__codelineno-11-8">8</a></span>
+<span class="normal"><a href="#__codelineno-11-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>[Desktop Entry]
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>Name=My App
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>Comment=My App
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>Exec=/path/to/app
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a>Icon=app-icon.png
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a>Type=Application
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a>Categories=Utility;
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a>Terminal=false
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a>StartupNotify=true
+</code></pre></div></td></tr></table></div>
+<p>其中Icon指定图标路径，Exec指定运行命令。</p>
+<p>此时直接运行会报错，和chrome-sandbox有关，解决方法是在可执行文件所在目录下开启终端运行：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>sudo<span class="w"> </span>chown<span class="w"> </span>root<span class="w"> </span>chrome-sandbox<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>chrome-sandbox
+</code></pre></div></td></tr></table></div>
+<p>或者在执行该可执行文件时加上<code>--no-sandbox</code>参数。</p>
 
 
 
