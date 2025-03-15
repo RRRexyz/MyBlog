@@ -102,7 +102,7 @@ npm run electron:build
 
 生成的构建文件在dist_electron目录下的win-unpacked文件夹下，可以直接运行。
 
-## 修改图标
+## Windows 系统下修改图标
 
 对于开发环境下的窗口，在background.js中添加：
 
@@ -137,3 +137,30 @@ module.exports = defineConfig({
   },
 })
 ```
+
+## Linux(Ubuntu) 下修改图标
+
+在~/.local/share/applications/或者/usr/share/applications/下创建.desktop文件，前者适用于当前用户目录，后者适用于系统目录，文件内容如下：
+
+```
+[Desktop Entry]
+Name=My App
+Comment=My App
+Exec=/path/to/app
+Icon=app-icon.png
+Type=Application
+Categories=Utility;
+Terminal=false
+StartupNotify=true
+```
+
+其中Icon指定图标路径，Exec指定运行命令。
+
+此时直接运行会报错，和chrome-sandbox有关，解决方法是在可执行文件所在目录下开启终端运行：
+
+```bash
+sudo chown root chrome-sandbox && sudo chmod 4755 chrome-sandbox
+```
+
+或者在执行该可执行文件时加上`--no-sandbox`参数。
+
