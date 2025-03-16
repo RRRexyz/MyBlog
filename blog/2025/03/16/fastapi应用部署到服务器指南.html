@@ -847,6 +847,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      前置条件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastapi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      将FastAPI项目代码上传到服务器端
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="将FastAPI项目代码上传到服务器端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过GitHub进行中转
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过SSH远程连接服务器并借助图形化界面实现文件拖动上传
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -971,6 +1021,29 @@
 
 
 <h1 id="fastapi">FastAPI应用部署到服务器指南</h1>
+<!-- more -->
+
+<h2 id="_1">前置条件</h2>
+<p>你有一台具有公网IP地址的（云）服务器，并已经安装了Linux 操作系统，如Ubuntu、CentOS等。除此之外，一般还需要有一个解析到该服务器的域名。然后可能还需要在服务器上开放SSH远程连接的端口（这个好像一般都是默认配好的）。</p>
+<h2 id="fastapi_1">将FastAPI项目代码上传到服务器端</h2>
+<p>所谓“部署”到服务器，实际上就是把FastAPI应用在服务器端运行起来，所以第一步自然就是把FastAPI项目代码上传到服务器上。那么应该如何上传呢？一般来说服务器上安装的都是Server 版的Linux 操作系统，只有一个黑窗口，并不能直接与Windows 系统交互进行文件传输。想要打破次元壁，可以采取下面几种方法：</p>
+<h3 id="github">通过GitHub进行中转</h3>
+<p>将本地的代码上传到GitHub仓库，然后在服务器上用
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>&lt;repository_url&gt;
+</code></pre></div></td></tr></table></div>
+命令克隆。</p>
+<p>这是最简单直接的方式，并且如果后续我们在本地又修改了代码，那么在服务器上也可以直接用
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>git<span class="w"> </span>pull
+</code></pre></div></td></tr></table></div>
+命令更新代码。</p>
+<p>不过众所周知GitHub经常需要科学上网才能访问，如果你的服务器是国内的，那很可能连不上GitHub（我就是😭）。解决方法当然就是在服务器上安装翻墙工具，不过在Linux 上相关配置可能会比较复杂，像我这样的懒人就直接放弃折腾了，毕竟我们还有后面的上传方案，是吧？</p>
+<h3 id="ssh">通过SSH远程连接服务器并借助图形化界面实现文件拖动上传</h3>
+<p>首先需要确保服务器上开放了22端口（SSH远程连接默认端口），可以通过
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>netstat<span class="w"> </span>-tuln
+</code></pre></div></td></tr></table></div>
+命令查看。
+<img alt="alt text" src="../../../images/image-6.png" />
+一般出现图中这种情况，就说明22端口是开放的。</p>
 
 
 
