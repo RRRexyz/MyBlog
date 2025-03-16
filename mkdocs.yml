@@ -11,8 +11,6 @@ nav:
     - work/index.md
   - 收藏:
     - collect/index.md
-  - 待办:
-    - todo/index.md
 
 plugins:
   # - glightbox
