@@ -890,6 +890,57 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gunicorn-uvicorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 Gunicorn 和 Uvicorn
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gunicorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行Gunicorn
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="运行Gunicorn">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用Docker部署FastAPI应用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nohup" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用nohup命令（推荐）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      用Caddy 做反向代理
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -958,7 +1009,7 @@
                       <li class="md-nav__item">
                         <div class="md-nav__link">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 13h1.5v2.82l2.44 1.41-.75 1.3L15 16.69zm4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67zM5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2zm11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85"/></svg>
-                          <time datetime="2025-03-16 00:00:00+00:00" class="md-ellipsis">2025年3月16日星期日</time>
+                          <time datetime="2025-03-17 00:00:00+00:00" class="md-ellipsis">2025年3月17日星期一</time>
                         </div>
                       </li>
                     
@@ -980,7 +1031,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 1 分钟阅读时间
+                              需要 3 分钟阅读时间
                             
                           </span>
                         </div>
@@ -1025,6 +1076,10 @@
 
 <h2 id="_1">前置条件</h2>
 <p>你有一台具有公网IP地址的（云）服务器，并已经安装了Linux 操作系统，如Ubuntu、CentOS等。除此之外，一般还需要有一个解析到该服务器的域名。然后可能还需要在服务器上开放SSH远程连接的端口（这个好像一般都是默认配好的）。</p>
+<div class="admonition warning">
+<p class="admonition-title">小问题</p>
+<p>如果你的云服务器是国内运营商提供的，那么将域名解析到该服务器后还需要进行ICP备案才能正常访问。</p>
+</div>
 <h2 id="fastapi_1">将FastAPI项目代码上传到服务器端</h2>
 <p>所谓“部署”到服务器，实际上就是把FastAPI应用在服务器端运行起来，所以第一步自然就是把FastAPI项目代码上传到服务器上。那么应该如何上传呢？一般来说服务器上安装的都是Server 版的Linux 操作系统，只有一个黑窗口，并不能直接与Windows 系统交互进行文件传输。想要打破次元壁，可以采取下面几种方法：</p>
 <h3 id="github">通过GitHub进行中转</h3>
@@ -1044,6 +1099,66 @@
 命令查看。
 <img alt="alt text" src="../../../images/image-6.png" />
 一般出现图中这种情况，就说明22端口是开放的。</p>
+<p>然后在VSCode 中安装Remote-SSH插件。
+<img alt="alt text" src="../../../images/image-7.png" /></p>
+<p>打开远程资源管理器，点"+"按钮添加SSH 远程主机，格式是<code>ssh &lt;username&gt;@&lt;hostname&gt;</code>，输入完点确定。
+<img alt="alt text" src="../../../images/image-8.png" /></p>
+<p>然后点击右下角弹出的窗口中的连接按钮，输入密码后就可以连接到服务器了。
+<img alt="alt text" src="../../../images/image-9.png" /></p>
+<p>连接后VSCode 会刷新界面，此时默认不会打开任何文件和文件夹。可以在界面左上角点击文件-&gt;打开文件夹，然后可以选择进入服务器中的任何目录。</p>
+<p>此外也可以点击这个齿轮按钮进入SSH 配置文件，刚刚通过"+"号添加的SSH 远程主机就会出现在这里面，可以手动修改相关信息。
+<img alt="alt text" src="../../../images/image-10.png" /></p>
+<p>这里面有3个参数：</p>
+<ul>
+<li>Host：主机名，可以随便取，但不能重复</li>
+<li>HostName：服务器IP地址</li>
+<li>User：远程连接时使用的用户名</li>
+</ul>
+<p>通过SSH 远程连接服务器后，你可以直接把Windows 系统资源管理器中的文件拖动到VSCode 左边的资源管理器中，从而实现文件上传。
+<img alt="alt text" src="../../../images/image-11.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">小技巧</p>
+<p>相应地，此时VSCode 左边的资源管理器中的所有文件右键单击后会有一个“下载”选项，这个选项可以把文件从服务器下载到本地。</p>
+</div>
+<h3 id="gunicorn-uvicorn">安装 Gunicorn 和 Uvicorn</h3>
+<p>在服务器端以生产环境的模式运行FastAPI 应用，和在Windows 本地以开发环境的模式运行略有不同，这里推荐使用Gunicorn with Uvicorn Workers的部署方式。</p>
+<p>运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;uvicorn[standard]&quot;</span><span class="w"> </span>gunicorn
+</code></pre></div></td></tr></table></div>
+将Uvicorn 和 Gunicorn 安装到虚拟环境中。</p>
+<h3 id="gunicorn">运行Gunicorn</h3>
+<p>接下来你可以通过以下命令运行Gunicorn:
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>gunicorn<span class="w"> </span>main:app<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--worker-class<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:66
+</code></pre></div></td></tr></table></div>
+其中<code>main:app</code>是你的FastAPI 应用的入口点，<code>--workers</code>是工作进程数量，<code>--worker-class</code>是工作进程类型，<code>--bind</code>是绑定的IP地址和端口。这里面需要注意的是最后的bind参数，IP地址必须是<code>0.0.0.0</code>，端口则可以任意选择（只要不是被占用即可），并且不建议使用80端口，因为80端口是HTTP协议的默认端口，可能会与其他服务冲突。对应地，22端口（SSH远程连接默认端口）和443端口（HTTPS协议默认端口）也不建议使用。</p>
+<p>运行Gunicorn 后，你的FastAPI 应用就已经暴露到公网上了，此时可以通过<code>&lt;IP地址&gt;:&lt;端口&gt;</code>访问到你的应用。</p>
+<p>但此时你将会发现一旦使用<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span>关闭上面的进程或者直接退出SSH 连接，你的FastAPI 应用就会停止运行。想要让进程能够自动保活，可以采取下面的方法：</p>
+<h4 id="dockerfastapi">使用Docker部署FastAPI应用</h4>
+<p>这是比较专业的部署方式，具有很高的可靠性。但缺点是配置非常麻烦，而且在低配的服务器上（我们白嫖的一般都是最低配的）可能会出现性能问题，没有办法流畅运行。所以对于简单的小项目一般还是建议使用下面的方法。（其实是因为我还不会用Docker 😂）</p>
+<h4 id="nohup">使用nohup命令（推荐）</h4>
+<p>这是比较简单粗暴的方法。</p>
+<p>使用nohup命令可以将进程放入后台运行，并且在退出SSH 连接后，进程依然能够保持运行。</p>
+<p>运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>nohup<span class="w"> </span>gunicorn<span class="w"> </span>main:app<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--worker-class<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:66<span class="w"> </span><span class="p">&amp;</span>
+</code></pre></div></td></tr></table></div>
+其中<code>&amp;</code>是将进程放入后台运行的命令。</p>
+<p>以该方式运行会在你的项目根目录下生成一个nohup.out 文件，里面记录的是运行日志，也就是之前直接运行时在终端中看到的输出内容。</p>
+<p>此时可以用
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gunicorn
+</code></pre></div></td></tr></table></div>
+命令查看进程是否在运行以及进程号。</p>
+<p><img alt="alt text" src="../../../images/image-12.png" /></p>
+<p>我们开了4个工作进程，所以这里会显示4个，但实际上后面3个都是第1个子进程。</p>
+<p>想要结束该进程，可以用
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>&lt;进程号&gt;
+</code></pre></div></td></tr></table></div>
+命令，其中<code>&lt;进程号&gt;</code>是上一步中显示的进程号（第一个）。</p>
+<p>然后再运行<code>ps -ef | grep gunicorn</code>命令，可以看到已经没有任何进程了。</p>
+<div class="admonition info">
+<p class="admonition-title">注意</p>
+<p>如果你对项目中的代码进行了修改，那么必须要先结束现有的Gunicorn 进程，然后再重新运行，才能看到修改后的效果。</p>
+</div>
+<h3 id="caddy">用Caddy 做反向代理</h3>
 
 
 
