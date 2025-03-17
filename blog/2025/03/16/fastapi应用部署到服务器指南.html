@@ -890,7 +890,12 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gunicorn-uvicorn" class="md-nav__link">
     <span class="md-ellipsis">
       安装 Gunicorn 和 Uvicorn
@@ -898,15 +903,15 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#gunicorn" class="md-nav__link">
     <span class="md-ellipsis">
-      运行Gunicorn
+      运行 Gunicorn
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="运行Gunicorn">
+    <nav class="md-nav" aria-label="运行 Gunicorn">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -931,18 +936,13 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#caddy" class="md-nav__link">
     <span class="md-ellipsis">
       用Caddy 做反向代理
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1120,22 +1120,22 @@
 <p class="admonition-title">小技巧</p>
 <p>相应地，此时VSCode 左边的资源管理器中的所有文件右键单击后会有一个“下载”选项，这个选项可以把文件从服务器下载到本地。</p>
 </div>
-<h3 id="gunicorn-uvicorn">安装 Gunicorn 和 Uvicorn</h3>
+<h2 id="gunicorn-uvicorn">安装 Gunicorn 和 Uvicorn</h2>
 <p>在服务器端以生产环境的模式运行FastAPI 应用，和在Windows 本地以开发环境的模式运行略有不同，这里推荐使用Gunicorn with Uvicorn Workers的部署方式。</p>
 <p>运行
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;uvicorn[standard]&quot;</span><span class="w"> </span>gunicorn
 </code></pre></div></td></tr></table></div>
 将Uvicorn 和 Gunicorn 安装到虚拟环境中。</p>
-<h3 id="gunicorn">运行Gunicorn</h3>
+<h2 id="gunicorn">运行 Gunicorn</h2>
 <p>接下来你可以通过以下命令运行Gunicorn:
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>gunicorn<span class="w"> </span>main:app<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--worker-class<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:66
 </code></pre></div></td></tr></table></div>
 其中<code>main:app</code>是你的FastAPI 应用的入口点，<code>--workers</code>是工作进程数量，<code>--worker-class</code>是工作进程类型，<code>--bind</code>是绑定的IP地址和端口。这里面需要注意的是最后的bind参数，IP地址必须是<code>0.0.0.0</code>，端口则可以任意选择（只要不是被占用即可），并且不建议使用80端口，因为80端口是HTTP协议的默认端口，可能会与其他服务冲突。对应地，22端口（SSH远程连接默认端口）和443端口（HTTPS协议默认端口）也不建议使用。</p>
 <p>运行Gunicorn 后，你的FastAPI 应用就已经暴露到公网上了，此时可以通过<code>&lt;IP地址&gt;:&lt;端口&gt;</code>访问到你的应用。</p>
 <p>但此时你将会发现一旦使用<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span>关闭上面的进程或者直接退出SSH 连接，你的FastAPI 应用就会停止运行。想要让进程能够自动保活，可以采取下面的方法：</p>
-<h4 id="dockerfastapi">使用Docker部署FastAPI应用</h4>
+<h3 id="dockerfastapi">使用Docker部署FastAPI应用</h3>
 <p>这是比较专业的部署方式，具有很高的可靠性。但缺点是配置非常麻烦，而且在低配的服务器上（我们白嫖的一般都是最低配的）可能会出现性能问题，没有办法流畅运行。所以对于简单的小项目一般还是建议使用下面的方法。（其实是因为我还不会用Docker 😂）</p>
-<h4 id="nohup">使用nohup命令（推荐）</h4>
+<h3 id="nohup">使用nohup命令（推荐）</h3>
 <p>这是比较简单粗暴的方法。</p>
 <p>使用nohup命令可以将进程放入后台运行，并且在退出SSH 连接后，进程依然能够保持运行。</p>
 <p>运行
@@ -1158,7 +1158,7 @@
 <p class="admonition-title">注意</p>
 <p>如果你对项目中的代码进行了修改，那么必须要先结束现有的Gunicorn 进程，然后再重新运行，才能看到修改后的效果。</p>
 </div>
-<h3 id="caddy">用Caddy 做反向代理</h3>
+<h2 id="caddy">用Caddy 做反向代理</h2>
 
 
 
