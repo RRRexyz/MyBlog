@@ -1197,7 +1197,49 @@
 <a id="__codelineno-8-5" name="__codelineno-8-5"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>caddy
 </code></pre></div></td></tr></table></div></p>
 <h3 id="caddy_2">配置Caddy 代理</h3>
-<p>安装完成后Caddy会生成/etc/</p>
+<p>安装完成后会生成/etc/caddy目录，里面有Caddy的配置文件Caddyfile（如果没有的话自己创建一个）。
+<img alt="alt text" src="../../../images/image-13.png" /></p>
+<p>在Caddyfile中添加以下内容：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>&lt;你的域名&gt; {
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>  reverse_proxy 0.0.0.0:&lt;FastAPI应用运行端口&gt;
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>  encode gzip
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>}
+</code></pre></div></td></tr></table></div>
+其中运行端口是你在执行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>nohup<span class="w"> </span>gunicorn<span class="w"> </span>main:app<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--worker-class<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:66<span class="w"> </span><span class="p">&amp;</span>
+</code></pre></div></td></tr></table></div>
+命令时指定的端口，比如这里是66。</p>
+<p>域名就是你挂载到服务器上的域名，当然像这样的后端服务一般都会代理到一个子域名上。</p>
+<p>一般来说购买域名时获得的都是二级域名，例如<code>rrrexyz.icu</code>，在服务器的管理面板中可以将其子域名解析到你的服务器IP上。
+<img alt="alt text" src="../../../images/image-14.png" /></p>
+<div class="admonition success">
+<p class="admonition-title">注意</p>
+<p>子域名解析后一般需要过十几分钟到几小时才会生效，所以如果你的域名还没有解析成功，请耐心等待。</p>
+</div>
+<p>比如说我就把问答抽奖系统的后端服务反向代理到了<code>qarfl.rrrexyz.icu</code>这个子域名上，配置文件中的写法是：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>qarfl.rrrexyz.icu {
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>    reverse_proxy 0.0.0.0:66
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>    encode gzip
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>}
+</code></pre></div></td></tr></table></div></p>
+<p>添加完毕保存文件后，需要执行以下命令使配置生效：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>caddy
+</code></pre></div></td></tr></table></div>
+之后只要对Caddyfile文件的内容做出了修改，都需要使用该命令刷新caddy。</p>
+<p>可以用
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>systemctl<span class="w"> </span>status<span class="w"> </span>caddy
+</code></pre></div></td></tr></table></div>
+命令查看caddy的运行状态。
+<img alt="alt text" src="../../../images/image-15.png" />
+Active状态为active（running）表示caddy已经正常运行。</p>
+<p>随后，Caddy会自动帮我们申请配置好SSL证书，我们可以通过<code>https://&lt;你的域名&gt;</code>访问到对应的FastAPI应用。
+<img alt="alt text" src="../../../images/image-16.png" /></p>
 
 
 
