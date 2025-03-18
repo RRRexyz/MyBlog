@@ -1123,6 +1123,10 @@
 命令查看。
 <img alt="alt text" src="../../../images/image-6.png" />
 一般出现图中这种情况，就说明22端口是开放的。</p>
+<p>如果并未开放的话，运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">22</span>
+</code></pre></div></td></tr></table></div>
+以允许22端口的通信。</p>
 <p>然后在VSCode 中安装Remote-SSH插件。
 <img alt="alt text" src="../../../images/image-7.png" /></p>
 <p>打开远程资源管理器，点"+"按钮添加SSH 远程主机，格式是<code>ssh &lt;username&gt;@&lt;hostname&gt;</code>，输入完点确定。
@@ -1147,12 +1151,12 @@
 <h2 id="gunicorn-uvicorn">安装 Gunicorn 和 Uvicorn</h2>
 <p>在服务器端以生产环境的模式运行FastAPI 应用，和在Windows 本地以开发环境的模式运行略有不同，这里推荐使用Gunicorn with Uvicorn Workers的部署方式。</p>
 <p>运行
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;uvicorn[standard]&quot;</span><span class="w"> </span>gunicorn
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;uvicorn[standard]&quot;</span><span class="w"> </span>gunicorn
 </code></pre></div></td></tr></table></div>
 将Uvicorn 和 Gunicorn 安装到虚拟环境中。</p>
 <h2 id="gunicorn">运行 Gunicorn</h2>
 <p>接下来你可以通过以下命令运行Gunicorn:
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>gunicorn<span class="w"> </span>main:app<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--worker-class<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:66
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>gunicorn<span class="w"> </span>main:app<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--worker-class<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:66
 </code></pre></div></td></tr></table></div>
 其中<code>main:app</code>是你的FastAPI 应用的入口点，<code>--workers</code>是工作进程数量，<code>--worker-class</code>是工作进程类型，<code>--bind</code>是绑定的IP地址和端口。这里面需要注意的是最后的bind参数，IP地址必须是<code>0.0.0.0</code>，端口则可以任意选择（只要不是被占用即可），并且不建议使用80端口，因为80端口是HTTP协议的默认端口，可能会与其他服务冲突。对应地，22端口（SSH远程连接默认端口）和443端口（HTTPS协议默认端口）也不建议使用。</p>
 <p>运行Gunicorn 后，你的FastAPI 应用就已经暴露到公网上了，此时可以通过<code>&lt;IP地址&gt;:&lt;端口&gt;</code>访问到你的应用。</p>
@@ -1163,18 +1167,18 @@
 <p>这是比较简单粗暴的方法。</p>
 <p>使用nohup命令可以将进程放入后台运行，并且在退出SSH 连接后，进程依然能够保持运行。</p>
 <p>运行
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>nohup<span class="w"> </span>gunicorn<span class="w"> </span>main:app<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--worker-class<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:66<span class="w"> </span><span class="p">&amp;</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>nohup<span class="w"> </span>gunicorn<span class="w"> </span>main:app<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--worker-class<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:66<span class="w"> </span><span class="p">&amp;</span>
 </code></pre></div></td></tr></table></div>
 其中<code>&amp;</code>是将进程放入后台运行的命令。</p>
 <p>以该方式运行会在你的项目根目录下生成一个nohup.out 文件，里面记录的是运行日志，也就是之前直接运行时在终端中看到的输出内容。</p>
 <p>此时可以用
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gunicorn
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gunicorn
 </code></pre></div></td></tr></table></div>
 命令查看进程是否在运行以及进程号。</p>
 <p><img alt="alt text" src="../../../images/image-12.png" /></p>
 <p>我们开了4个工作进程，所以这里会显示4个，但实际上后面3个都是第1个子进程。</p>
 <p>想要结束该进程，可以用
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>&lt;进程号&gt;
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>&lt;进程号&gt;
 </code></pre></div></td></tr></table></div>
 命令，其中<code>&lt;进程号&gt;</code>是上一步中显示的进程号（第一个）。</p>
 <p>然后再运行<code>ps -ef | grep gunicorn</code>命令，可以看到已经没有任何进程了。</p>
@@ -1186,30 +1190,30 @@
 <p>这部分可以去看看<a href="https://caddy2.dengxiaolong.com/docs/">Caddy的官方文档</a>。懒得看的话，就按下面的省流版来吧～</p>
 <h3 id="caddy_1">安装Caddy</h3>
 <p>安装稳定版本的Caddy：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
-<span class="normal"><a href="#__codelineno-8-2">2</a></span>
-<span class="normal"><a href="#__codelineno-8-3">3</a></span>
-<span class="normal"><a href="#__codelineno-8-4">4</a></span>
-<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>debian-keyring<span class="w"> </span>debian-archive-keyring<span class="w"> </span>apt-transport-https
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a>curl<span class="w"> </span>-1sLf<span class="w"> </span><span class="s1">&#39;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/caddy-stable-archive-keyring.gpg
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a>curl<span class="w"> </span>-1sLf<span class="w"> </span><span class="s1">&#39;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/caddy-stable.list
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-<a id="__codelineno-8-5" name="__codelineno-8-5"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>caddy
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>debian-keyring<span class="w"> </span>debian-archive-keyring<span class="w"> </span>apt-transport-https
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>curl<span class="w"> </span>-1sLf<span class="w"> </span><span class="s1">&#39;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/caddy-stable-archive-keyring.gpg
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>curl<span class="w"> </span>-1sLf<span class="w"> </span><span class="s1">&#39;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/caddy-stable.list
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>caddy
 </code></pre></div></td></tr></table></div></p>
 <h3 id="caddy_2">配置Caddy 代理</h3>
 <p>安装完成后会生成/etc/caddy目录，里面有Caddy的配置文件Caddyfile（如果没有的话自己创建一个）。
 <img alt="alt text" src="../../../images/image-13.png" /></p>
 <p>在Caddyfile中添加以下内容：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
-<span class="normal"><a href="#__codelineno-9-2">2</a></span>
-<span class="normal"><a href="#__codelineno-9-3">3</a></span>
-<span class="normal"><a href="#__codelineno-9-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>&lt;你的域名&gt; {
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a>  reverse_proxy 0.0.0.0:&lt;FastAPI应用运行端口&gt;
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a>  encode gzip
-<a id="__codelineno-9-4" name="__codelineno-9-4"></a>}
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>&lt;你的域名&gt; {
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>  reverse_proxy 0.0.0.0:&lt;FastAPI应用运行端口&gt;
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>  encode gzip
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>}
 </code></pre></div></td></tr></table></div>
 其中运行端口是你在执行
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>nohup<span class="w"> </span>gunicorn<span class="w"> </span>main:app<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--worker-class<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:66<span class="w"> </span><span class="p">&amp;</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>nohup<span class="w"> </span>gunicorn<span class="w"> </span>main:app<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span><span class="w"> </span>--worker-class<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:66<span class="w"> </span><span class="p">&amp;</span>
 </code></pre></div></td></tr></table></div>
 命令时指定的端口，比如这里是66。</p>
 <p>域名就是你挂载到服务器上的域名，当然像这样的后端服务一般都会代理到一个子域名上。</p>
@@ -1220,20 +1224,20 @@
 <p>子域名解析后一般需要过十几分钟到几小时才会生效，所以如果你的域名还没有解析成功，请耐心等待。</p>
 </div>
 <p>比如说我就把问答抽奖系统的后端服务反向代理到了<code>qarfl.rrrexyz.icu</code>这个子域名上，配置文件中的写法是：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
-<span class="normal"><a href="#__codelineno-11-2">2</a></span>
-<span class="normal"><a href="#__codelineno-11-3">3</a></span>
-<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>qarfl.rrrexyz.icu {
-<a id="__codelineno-11-2" name="__codelineno-11-2"></a>    reverse_proxy 0.0.0.0:66
-<a id="__codelineno-11-3" name="__codelineno-11-3"></a>    encode gzip
-<a id="__codelineno-11-4" name="__codelineno-11-4"></a>}
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>qarfl.rrrexyz.icu {
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>    reverse_proxy 0.0.0.0:66
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>    encode gzip
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>}
 </code></pre></div></td></tr></table></div></p>
 <p>添加完毕保存文件后，需要执行以下命令使配置生效：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>caddy
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>caddy
 </code></pre></div></td></tr></table></div>
 之后只要对Caddyfile文件的内容做出了修改，都需要使用该命令刷新caddy。</p>
 <p>可以用
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>systemctl<span class="w"> </span>status<span class="w"> </span>caddy
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>systemctl<span class="w"> </span>status<span class="w"> </span>caddy
 </code></pre></div></td></tr></table></div>
 命令查看caddy的运行状态。
 <img alt="alt text" src="../../../images/image-15.png" />
