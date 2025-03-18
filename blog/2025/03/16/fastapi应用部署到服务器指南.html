@@ -944,6 +944,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="用Caddy 做反向代理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caddy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装Caddy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caddy_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置Caddy 代理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1159,6 +1183,21 @@
 <p>如果你对项目中的代码进行了修改，那么必须要先结束现有的Gunicorn 进程，然后再重新运行，才能看到修改后的效果。</p>
 </div>
 <h2 id="caddy">用Caddy 做反向代理</h2>
+<p>这部分可以去看看<a href="https://caddy2.dengxiaolong.com/docs/">Caddy的官方文档</a>。懒得看的话，就按下面的省流版来吧～</p>
+<h3 id="caddy_1">安装Caddy</h3>
+<p>安装稳定版本的Caddy：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>debian-keyring<span class="w"> </span>debian-archive-keyring<span class="w"> </span>apt-transport-https
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>curl<span class="w"> </span>-1sLf<span class="w"> </span><span class="s1">&#39;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/caddy-stable-archive-keyring.gpg
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>curl<span class="w"> </span>-1sLf<span class="w"> </span><span class="s1">&#39;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/caddy-stable.list
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>caddy
+</code></pre></div></td></tr></table></div></p>
+<h3 id="caddy_2">配置Caddy 代理</h3>
+<p>安装完成后Caddy会生成/etc/</p>
 
 
 
