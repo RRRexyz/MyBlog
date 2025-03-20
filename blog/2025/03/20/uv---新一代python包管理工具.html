@@ -10,13 +10,11 @@
         <meta name="author" content="Rex">
       
       
-        <link rel="canonical" href="https://rrrexyz.github.io/MyBlog/blog/2025/03/04/%E5%88%9B%E5%BB%BAelectron-vue%E5%BA%94%E7%94%A8.html">
+        <link rel="canonical" href="https://rrrexyz.github.io/MyBlog/blog/2025/03/20/uv---%E6%96%B0%E4%B8%80%E4%BB%A3python%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7.html">
       
       
-        <link rel="prev" href="../../02/17/ubuntu%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE.html">
+        <link rel="prev" href="../16/fastapi%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8C%87%E5%8D%97.html">
       
-      
-        <link rel="next" href="../07/%E8%BD%A6%E8%81%94%E7%BD%91%E8%BD%A6%E6%A8%A1%E8%B0%83%E8%AF%95%E6%AD%A5%E9%AA%A4.html">
       
       
       <link rel="icon" href="../../../../images/R.png">
@@ -24,7 +22,7 @@
     
     
       
-        <title>创建electron-vue应用 - Rex's Blog</title>
+        <title>UV---新一代Python包管理工具 - Rex's Blog</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#electron-vue" class="md-skip">
+        <a href="#uv-python" class="md-skip">
           跳转至
         </a>
       
@@ -123,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              创建electron-vue应用
+              UV---新一代Python包管理工具
             
           </span>
         </div>
@@ -856,73 +854,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#electron" class="md-nav__link">
-    <span class="md-ellipsis">
-      无法正确安装electron模块
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vue-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装Vue CLI 脚手架
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vue" class="md-nav__link">
-    <span class="md-ellipsis">
-      创建 Vue 项目
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#electron_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Electron 依赖安装
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      开发与调试流程
+      安装
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="开发与调试流程">
+    <nav class="md-nav" aria-label="安装">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
-      启动开发模式
+      独立安装（无需 Python 环境）
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#pip-python" class="md-nav__link">
     <span class="md-ellipsis">
-      生产环境构建
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      执行构建命令
+      ​通过 pip 安装​（已有 Python 环境）
     </span>
   </a>
   
@@ -934,18 +887,96 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#windows" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Windows 系统下修改图标
+      创建新项目
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#linuxubuntu" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Linux(Ubuntu) 下修改图标
+      创建并激活虚拟环境
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装/切换Python版本
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      管理依赖
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="管理依赖">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装依赖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      移除依赖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看依赖关系
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成依赖版本文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      批量安装依赖（兼容pip）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      修复/更改依赖环境
     </span>
   </a>
   
@@ -1007,14 +1038,14 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2025-03-04 00:00:00+00:00" class="md-ellipsis">2025年3月4日星期二</time>
+                        <time datetime="2025-03-20 00:00:00+00:00" class="md-ellipsis">2025年3月20日星期四</time>
                       </div>
                     </li>
                     
                       <li class="md-nav__item">
                         <div class="md-nav__link">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 13h1.5v2.82l2.44 1.41-.75 1.3L15 16.69zm4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67zM5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2zm11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85"/></svg>
-                          <time datetime="2025-03-15 00:00:00+00:00" class="md-ellipsis">2025年3月15日星期六</time>
+                          <time datetime="2025-03-20 00:00:00+00:00" class="md-ellipsis">2025年3月20日星期四</time>
                         </div>
                       </li>
                     
@@ -1036,7 +1067,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 2 分钟阅读时间
+                              需要 1 分钟阅读时间
                             
                           </span>
                         </div>
@@ -1063,162 +1094,101 @@
       
       
       
-        <a href="../../../../tag.html#tag:环境配置" class="md-tag">环境配置</a>
+        <a href="../../../../tag.html#tag:python" class="md-tag">Python</a>
       
     
   </nav>
 
 
 
-<h1 id="electron-vue">创建electron-vue应用</h1>
+<h1 id="uv-python">UV---新一代Python包管理工具</h1>
+<p>UV是由Astral公司（Rust工具Ruff的开发者）推出的高性能Python包管理工具，基于Rust编写，旨在替代传统的pip和pip-tools。其核心优势在于极快的速度（比pip快10-100倍）、轻量级设计（仅几十MB）以及现代化的依赖管理（支持pyproject.toml和uv.lock文件）。UV集成了虚拟环境管理、Python版本控制、依赖解析等功能，目标是成为类似Rust Cargo的全能工具，简化Python开发流程。</p>
 <!-- more -->
 
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>不要使用pnpm等其他包管理工具，应该使用官方文档中使用的npm，否则极有可能导致electron-squirrel-startup安装失败。</p>
+<h2 id="_1">安装</h2>
+<h3 id="python">独立安装（无需 Python 环境）</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">irm </span><span class="n">https</span><span class="p">://</span><span class="n">astral</span><span class="p">.</span><span class="n">sh</span><span class="p">/</span><span class="n">uv</span><span class="p">/</span><span class="n">install</span><span class="p">.</span><span class="n">ps1</span> <span class="p">|</span> <span class="nb">iex</span>
+</code></pre></div></td></tr></table></div>
 </div>
-<h2 id="electron">无法正确安装electron模块</h2>
-<p>可以直接修改Electron 和 Electron Builder 的二进制文件的镜像源</p>
-<ol>
-<li>打开npm配置：npm config edit</li>
-<li>在弹出的文件空白处配置Electron 和 Electron Builder 的二进制文件的镜像源</li>
-</ol>
-<p>将下面的内容添加到打开的.npmrc文件末尾：</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>electron_mirror=https://cdn.npmmirror.com/binaries/electron/
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a>electron_builder_binaries_mirror=https://npmmirror.com/mirrors/electron-builder-binaries/
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </code></pre></div></td></tr></table></div>
-<h2 id="vue-cli">安装Vue CLI 脚手架</h2>
-<p>用淘宝镜像源cnpm安装Vue CLI脚手架：</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
-<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">npm</span> <span class="n">install</span> <span class="n">-g</span> <span class="n">cnpm</span> <span class="p">-</span><span class="n">-registry</span><span class="p">=</span><span class="n">https</span><span class="p">://</span><span class="n">registry</span><span class="p">.</span><span class="n">npmmirror</span><span class="p">.</span><span class="n">com</span>  
-<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="n">cnpm</span> <span class="n">install</span> <span class="n">-g</span> <span class="nv">@vue</span><span class="p">/</span><span class="nb">cli</span>
+</div>
+</div>
+</div>
+<h3 id="pip-python">​通过 pip 安装​（已有 Python 环境）</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>uv
 </code></pre></div></td></tr></table></div>
-<h2 id="vue">创建 Vue 项目</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">vue</span> <span class="n">create</span> <span class="n">my-project</span>
+<h2 id="_2">创建新项目</h2>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>uv<span class="w"> </span>init<span class="w"> </span>my_project<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.13<span class="w">  </span>
 </code></pre></div></td></tr></table></div>
-<h2 id="electron_1">Electron 依赖安装</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
-<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nb">cd </span><span class="n">my-electron-app</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">npm</span> <span class="n">install</span> <span class="n">electron</span> <span class="n">electron-builder</span> <span class="p">-</span><span class="n">-save-dev</span>
+其中<code>--python</code>参数指定项目使用的Python版本。</p>
+<h2 id="_3">创建并激活虚拟环境</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">uv</span> <span class="n">venv</span> <span class="p">-</span><span class="n">-python</span> <span class="n">3</span><span class="p">.</span><span class="n">13</span> <span class="p">.</span><span class="n">venv</span> 
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p">.</span><span class="n">venv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">activate</span>
 </code></pre></div></td></tr></table></div>
-<p>推荐同时安装 <code>vue-cli-plugin-electron-builder</code> 插件实现更深度集成：</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">vue</span> <span class="n">add</span> <span class="n">electron-builder</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.13<span class="w"> </span>.venv<span class="w"> </span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </code></pre></div></td></tr></table></div>
-<p>此时如果在babel.config.js文件中module报错，是因为当前VSCode打开的并非Vue项目根目录，需要进入刚刚创建的新文件夹下。</p>
-<p>如果更改工作目录后依然报错，尝试运行</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">npm</span> <span class="n">install</span> <span class="nv">@vue</span><span class="p">/</span><span class="n">cli-plugin-babel</span> <span class="nv">@babel</span><span class="p">/</span><span class="n">preset-env</span> <span class="p">-</span><span class="n">-save-dev</span>
+</div>
+</div>
+</div>
+<h2 id="python_1">安装/切换Python版本</h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12<span class="w">    </span><span class="c1"># 下载指定版本</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>uv<span class="w"> </span>python<span class="w"> </span>use<span class="w"> </span><span class="m">3</span>.12
 </code></pre></div></td></tr></table></div>
-<h2 id="_1">开发与调试流程</h2>
-<h3 id="_2">启动开发模式</h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">npm</span> <span class="n">run</span> <span class="n">electron</span><span class="p">:</span><span class="n">serve</span>  <span class="c"># 自动启动 Vue 开发服务器 + Electron 窗口</span>
+<h2 id="_4">管理依赖</h2>
+<h3 id="_5">安装依赖</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>uv<span class="w"> </span>add<span class="w"> </span>requests<span class="w">   </span><span class="c1"># 声明式依赖管理</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>requests<span class="w">  </span><span class="c1"># 兼容传统pip</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="_3">生产环境构建</h3>
-<p>打包配置优化:更改vue.config.js文件，添加以下内容：</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-7-10">10</a></span>
-<span class="normal"><a href="#__codelineno-7-11">11</a></span>
-<span class="normal"><a href="#__codelineno-7-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="nx">pluginOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="nx">electronBuilder</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">      </span><span class="nx">nodeIntegration</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">      </span><span class="nx">builderOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">        </span><span class="nx">appId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;com.example.app&#39;</span><span class="p">,</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">        </span><span class="nx">win</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;nsis&#39;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">        </span><span class="nx">mac</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">category</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;public.app-category.utilities&#39;</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">      </span><span class="p">}</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="p">}</span>
+<h3 id="_6">移除依赖</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>uv<span class="w"> </span>remove<span class="w"> </span>requests
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>requests
 </code></pre></div></td></tr></table></div>
-<h3 id="_4">执行构建命令</h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">npm</span> <span class="n">run</span> <span class="n">electron</span><span class="p">:</span><span class="n">build</span>
-</code></pre></div></td></tr></table></div>
-<p>生成的构建文件在dist_electron目录下的win-unpacked文件夹下，可以直接运行。</p>
-<h2 id="windows">Windows 系统下修改图标</h2>
-<p>对于开发环境下的窗口，在background.js中添加：</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<h3 id="_7">查看依赖关系</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
 <span class="normal"><a href="#__codelineno-9-2">2</a></span>
-<span class="normal"><a href="#__codelineno-9-3">3</a></span>
-<span class="normal"><a href="#__codelineno-9-4">4</a></span>
-<span class="normal"><a href="#__codelineno-9-5">5</a></span>
-<span class="normal"><a href="#__codelineno-9-6">6</a></span>
-<span class="normal"><a href="#__codelineno-9-7">7</a></span>
-<span class="normal"><a href="#__codelineno-9-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">createWindow</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span><span class="c1">// Create the browser window.</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">win</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">BrowserWindow</span><span class="p">({</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">800</span><span class="p">,</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">    </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="mf">600</span><span class="p">,</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">    </span><span class="nx">autoHideMenuBar</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">    </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;../public/image.png&#39;</span><span class="p">),</span><span class="w">  </span><span class="c1">// 这里指定图标路径</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">    </span><span class="p">...</span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>show<span class="w"> </span>pandas<span class="w">    </span><span class="c1"># 查看包详情</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>check<span class="w">          </span><span class="c1"># 检查依赖冲突</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>uv<span class="w"> </span>tree<span class="w">               </span><span class="c1"># 可视化依赖关系</span>
 </code></pre></div></td></tr></table></div>
-<p>对于生产环境下的图标，在vue.config.js中添加：</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-10-10">10</a></span>
-<span class="normal"><a href="#__codelineno-10-11">11</a></span>
-<span class="normal"><a href="#__codelineno-10-12">12</a></span>
-<span class="normal"><a href="#__codelineno-10-13">13</a></span>
-<span class="normal"><a href="#__codelineno-10-14">14</a></span>
-<span class="normal"><a href="#__codelineno-10-15">15</a></span>
-<span class="normal"><a href="#__codelineno-10-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">defineConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;@vue/cli-service&#39;</span><span class="p">)</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">defineConfig</span><span class="p">({</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">  </span><span class="nx">transpileDependencies</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">  </span><span class="nx">pluginOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">    </span><span class="nx">electronBuilder</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">      </span><span class="nx">nodeIntegration</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">      </span><span class="nx">builderOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">        </span><span class="nx">appId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;com.example.app&#39;</span><span class="p">,</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="w">        </span><span class="nx">win</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="w">          </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;nsis&#39;</span><span class="p">,</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="w">          </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;public/image.png&#39;</span><span class="w">  </span><span class="c1">// 这里指定图标路径</span>
-<a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="w">      </span><span class="p">}</span>
-<a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="p">})</span>
+<h2 id="_8">生成依赖版本文件</h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>pyproject.toml<span class="w"> </span>-o<span class="w"> </span>requirements.txt<span class="w">  </span><span class="c1"># 生成确定性依赖版本文件</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="linuxubuntu">Linux(Ubuntu) 下修改图标</h2>
-<p>在~/.local/share/applications/或者/usr/share/applications/下创建.desktop文件，前者适用于当前用户目录，后者适用于系统目录，文件内容如下：</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
-<span class="normal"><a href="#__codelineno-11-2">2</a></span>
-<span class="normal"><a href="#__codelineno-11-3">3</a></span>
-<span class="normal"><a href="#__codelineno-11-4">4</a></span>
-<span class="normal"><a href="#__codelineno-11-5">5</a></span>
-<span class="normal"><a href="#__codelineno-11-6">6</a></span>
-<span class="normal"><a href="#__codelineno-11-7">7</a></span>
-<span class="normal"><a href="#__codelineno-11-8">8</a></span>
-<span class="normal"><a href="#__codelineno-11-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>[Desktop Entry]
-<a id="__codelineno-11-2" name="__codelineno-11-2"></a>Name=My App
-<a id="__codelineno-11-3" name="__codelineno-11-3"></a>Comment=My App
-<a id="__codelineno-11-4" name="__codelineno-11-4"></a>Exec=/path/to/app
-<a id="__codelineno-11-5" name="__codelineno-11-5"></a>Icon=app-icon.png
-<a id="__codelineno-11-6" name="__codelineno-11-6"></a>Type=Application
-<a id="__codelineno-11-7" name="__codelineno-11-7"></a>Categories=Utility;
-<a id="__codelineno-11-8" name="__codelineno-11-8"></a>Terminal=false
-<a id="__codelineno-11-9" name="__codelineno-11-9"></a>StartupNotify=true
+<h2 id="pip">批量安装依赖（兼容pip）</h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </code></pre></div></td></tr></table></div>
-<p>其中Icon指定图标路径，Exec指定运行命令。</p>
-<p>此时直接运行会报错，和chrome-sandbox有关，解决方法是在可执行文件所在目录下开启终端运行：</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>sudo<span class="w"> </span>chown<span class="w"> </span>root<span class="w"> </span>chrome-sandbox<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>chrome-sandbox
+<h2 id="_9">修复/更改依赖环境</h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span>
+<span class="normal"><a href="#__codelineno-12-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># 修改 pyproject.toml 后同步环境</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>uv<span class="w"> </span>sync
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="c1"># 强制重建虚拟环境（忽略现有缓存）</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>uv<span class="w"> </span>sync<span class="w"> </span>--clean
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="c1"># 仅更新指定依赖（如升级 pandas）</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>uv<span class="w"> </span>sync<span class="w"> </span>--upgrade-package<span class="w"> </span>pandas
 </code></pre></div></td></tr></table></div>
-<p>或者在执行该可执行文件时加上<code>--no-sandbox</code>参数。</p>
 
 
 
@@ -1263,7 +1233,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../../02/17/ubuntu%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE.html" class="md-footer__link md-footer__link--prev" aria-label="上一页: Ubuntu操作系统中的一些常见配置">
+          <a href="../16/fastapi%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8C%87%E5%8D%97.html" class="md-footer__link md-footer__link--prev" aria-label="上一页: FastAPI应用部署到服务器指南">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1273,27 +1243,11 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                Ubuntu操作系统中的一些常见配置
+                FastAPI应用部署到服务器指南
               </div>
             </div>
           </a>
         
-        
-          
-          <a href="../07/%E8%BD%A6%E8%81%94%E7%BD%91%E8%BD%A6%E6%A8%A1%E8%B0%83%E8%AF%95%E6%AD%A5%E9%AA%A4.html" class="md-footer__link md-footer__link--next" aria-label="下一页: 车联网车模调试步骤">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              <div class="md-ellipsis">
-                车联网车模调试步骤
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
         
       </nav>
     
