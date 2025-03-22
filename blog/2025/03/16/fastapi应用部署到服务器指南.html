@@ -1136,6 +1136,10 @@
 </code></pre></div></td></tr></table></div>
 其中<code>main:app</code>是你的FastAPI 应用的入口点，<code>--workers</code>是工作进程数量，<code>--worker-class</code>是工作进程类型，<code>--bind</code>是绑定的IP地址和端口。这里面需要注意的是最后的bind参数，IP地址必须是<code>0.0.0.0</code>，端口则可以任意选择（只要不是被占用即可），并且不建议使用80端口，因为80端口是HTTP协议的默认端口，可能会与其他服务冲突。对应地，22端口（SSH远程连接默认端口）和443端口（HTTPS协议默认端口）也不建议使用。</p>
 <p>运行Gunicorn 后，你的FastAPI 应用就已经暴露到公网上了，此时可以通过<code>&lt;IP地址&gt;:&lt;端口&gt;</code>访问到你的应用。</p>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>由于这里使用<code>gunicorn</code>命令运行项目，而不是直接以<code>main.py</code>为入口执行Python 脚本，因此写在<code>if __name__ == '__main__':</code>代码块中的代码不会被执行，请将原本置于其中的代码移到外面以保证正常执行。</p>
+</div>
 <p>但此时你将会发现一旦使用<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span>关闭上面的进程或者直接退出SSH 连接，你的FastAPI 应用就会停止运行。想要让进程能够自动保活，可以采取下面的方法：</p>
 <h3 id="dockerfastapi">使用Docker部署FastAPI应用</h3>
 <p>这是比较专业的部署方式，具有很高的可靠性。但缺点是配置非常麻烦，而且在低配的服务器上（我们白嫖的一般都是最低配的）可能会出现性能问题，没有办法流畅运行。所以对于简单的小项目一般还是建议使用下面的方法。（其实是因为我还不会用Docker 😂）</p>
