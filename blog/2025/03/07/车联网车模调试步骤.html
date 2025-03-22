@@ -595,8 +595,6 @@
       
         
       
-        
-      
     
     
       
@@ -637,30 +635,6 @@
             分类
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-    
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../category/%E5%AD%A6%E4%B8%9A.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    学业
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -898,6 +872,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="车端控制程序调试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过Windows 资源管理器访问车端系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过SSH 连接远程访问车端系统
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1087,6 +1085,7 @@
 </code></pre></div></td></tr></table></div>
 <p>然后重复上面的步骤即可。</p>
 <h2 id="_4">车端控制程序调试</h2>
+<h3 id="windows">通过Windows 资源管理器访问车端系统</h3>
 <p>在启动车模主板并连接局域网的情况下载资源管理器地址栏输入 <code>\\192.168.12.202</code> 进入车端控制程序目录。</p>
 <p>进入到
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>\\192.168.12.202\ychdminicar\ychd-planB\src\wheeltec_robot_rc
@@ -1094,6 +1093,18 @@
 目录下</p>
 <p>launch中的 <code>v2xinterface202.launch</code>中确定了启动文件，一般是scripts中的v2xinterface文件夹下的.py文件。</p>
 <p>修改对应代码后，需要将 <code>startautoware.sh</code>程序停止，然后把车模舵机/电机开关关闭后再重新打开，并reset控制板，此后重新运行 <code>startautoware.sh</code>程序，车模会以新的程序运动。</p>
+<h3 id="ssh">通过SSH 连接远程访问车端系统</h3>
+<p>在VSCode 中SSH 连接车端系统
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a># .ssh/config文件中配置
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>Host 2-car
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>  HostName 192.168.12.202
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>  User nvidia
+</code></pre></div></td></tr></table></div>
+其中IP地址的最后一位为<code>200+车模编号</code>，如2-car的IP地址为<code>192.168.12.202</code>。</p>
+<p>连接成功后进入<code>ychd\ychd-planB\src\wheeltec_robot_rc</code>目录，其余配置同上。</p>
 
 
 
