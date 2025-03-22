@@ -1138,7 +1138,8 @@
 <p>运行Gunicorn 后，你的FastAPI 应用就已经暴露到公网上了，此时可以通过<code>&lt;IP地址&gt;:&lt;端口&gt;</code>访问到你的应用。</p>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>由于这里使用<code>gunicorn</code>命令运行项目，而不是直接以<code>main.py</code>为入口执行Python 脚本，因此写在<code>if __name__ == '__main__':</code>代码块中的代码不会被执行，请将原本置于其中的代码移到外面以保证正常执行。</p>
+<p>由于这里使
+<code>gunicorn</code>命令运行项目，而不是直接以<code>main.py</code>为入口执行Python 脚本，因此写在<code>if __name__ == '__main__':</code>代码块中的代码不会被执行，请将原本置于其中的代码移到外面以保证正常执行。</p>
 </div>
 <p>但此时你将会发现一旦使用<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span>关闭上面的进程或者直接退出SSH 连接，你的FastAPI 应用就会停止运行。想要让进程能够自动保活，可以采取下面的方法：</p>
 <h3 id="dockerfastapi">使用Docker部署FastAPI应用</h3>
