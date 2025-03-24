@@ -941,16 +941,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pip" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      批量安装依赖（兼容pip）
+      批量安装依赖
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       修复/更改依赖环境
     </span>
@@ -1021,7 +1021,7 @@
                       <li class="md-nav__item">
                         <div class="md-nav__link">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 13h1.5v2.82l2.44 1.41-.75 1.3L15 16.69zm4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67zM5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2zm11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85"/></svg>
-                          <time datetime="2025-03-20 00:00:00+00:00" class="md-ellipsis">2025年3月20日星期四</time>
+                          <time datetime="2025-03-24 00:00:00+00:00" class="md-ellipsis">2025年3月24日星期一</time>
                         </div>
                       </li>
                     
@@ -1099,71 +1099,80 @@
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>uv
 </code></pre></div></td></tr></table></div>
 <h2 id="_2">创建新项目</h2>
-<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>uv<span class="w"> </span>init<span class="w"> </span>my_project<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.13<span class="w">  </span>
+<p>连带创建项目目录：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>uv<span class="w"> </span>init<span class="w"> </span>my_project<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.13<span class="w">  </span>
 </code></pre></div></td></tr></table></div>
 其中<code>--python</code>参数指定项目使用的Python版本。</p>
+<p>在已存在的项目目录中添加uv工具：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>uv<span class="w"> </span>init<span class="w"> </span>-p<span class="w"> </span><span class="m">3</span>.13
+</code></pre></div></td></tr></table></div>
+其中<code>-p</code>参数指定项目使用的Python版本，是<code>--python</code>的简写。</p>
 <h2 id="_3">创建并激活虚拟环境</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
-<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">uv</span> <span class="n">venv</span> <span class="p">-</span><span class="n">-python</span> <span class="n">3</span><span class="p">.</span><span class="n">13</span> <span class="p">.</span><span class="n">venv</span> 
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p">.</span><span class="n">venv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">activate</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">uv</span> <span class="n">venv</span> <span class="p">-</span><span class="n">-python</span> <span class="n">3</span><span class="p">.</span><span class="n">13</span> <span class="p">.</span><span class="n">venv</span> 
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="p">.</span><span class="n">venv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">activate</span>
 </code></pre></div></td></tr></table></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
-<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.13<span class="w"> </span>.venv<span class="w"> </span>
-<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.13<span class="w"> </span>.venv<span class="w"> </span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </code></pre></div></td></tr></table></div>
 </div>
 </div>
 </div>
 <h2 id="python_1">安装/切换Python版本</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
-<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12<span class="w">    </span><span class="c1"># 下载指定版本</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a>uv<span class="w"> </span>python<span class="w"> </span>use<span class="w"> </span><span class="m">3</span>.12
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12<span class="w">    </span><span class="c1"># 下载指定版本</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>uv<span class="w"> </span>python<span class="w"> </span>use<span class="w"> </span><span class="m">3</span>.12
 </code></pre></div></td></tr></table></div>
 <h2 id="_4">管理依赖</h2>
 <h3 id="_5">安装依赖</h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
-<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>uv<span class="w"> </span>add<span class="w"> </span>requests<span class="w">   </span><span class="c1"># 声明式依赖管理</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>requests<span class="w">  </span><span class="c1"># 兼容传统pip</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>uv<span class="w"> </span>add<span class="w"> </span>requests<span class="w">   </span><span class="c1"># 声明式依赖管理</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>requests<span class="w">  </span><span class="c1"># 兼容传统pip</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_6">移除依赖</h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
-<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>uv<span class="w"> </span>remove<span class="w"> </span>requests
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>requests
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>uv<span class="w"> </span>remove<span class="w"> </span>requests
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>requests
 </code></pre></div></td></tr></table></div>
 <h3 id="_7">查看依赖关系</h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
-<span class="normal"><a href="#__codelineno-9-2">2</a></span>
-<span class="normal"><a href="#__codelineno-9-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>show<span class="w"> </span>pandas<span class="w">    </span><span class="c1"># 查看包详情</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>check<span class="w">          </span><span class="c1"># 检查依赖冲突</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a>uv<span class="w"> </span>tree<span class="w">               </span><span class="c1"># 可视化依赖关系</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>show<span class="w"> </span>pandas<span class="w">    </span><span class="c1"># 查看包详情</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>check<span class="w">          </span><span class="c1"># 检查依赖冲突</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>uv<span class="w"> </span>tree<span class="w">               </span><span class="c1"># 可视化依赖关系</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="_8">生成依赖版本文件</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>pyproject.toml<span class="w"> </span>-o<span class="w"> </span>requirements.txt<span class="w">  </span><span class="c1"># 生成确定性依赖版本文件</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>pyproject.toml<span class="w"> </span>-o<span class="w"> </span>requirements.txt<span class="w">  </span><span class="c1"># 生成确定性依赖版本文件</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="pip">批量安装依赖（兼容pip）</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<h2 id="_9">批量安装依赖</h2>
+<p>兼容pip的安装方式：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </code></pre></div></td></tr></table></div>
-<h2 id="_9">修复/更改依赖环境</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
-<span class="normal"><a href="#__codelineno-12-2">2</a></span>
-<span class="normal"><a href="#__codelineno-12-3">3</a></span>
-<span class="normal"><a href="#__codelineno-12-4">4</a></span>
-<span class="normal"><a href="#__codelineno-12-5">5</a></span>
-<span class="normal"><a href="#__codelineno-12-6">6</a></span>
-<span class="normal"><a href="#__codelineno-12-7">7</a></span>
-<span class="normal"><a href="#__codelineno-12-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># 修改 pyproject.toml 后同步环境</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2"></a>uv<span class="w"> </span>sync
-<a id="__codelineno-12-3" name="__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="c1"># 强制重建虚拟环境（忽略现有缓存）</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5"></a>uv<span class="w"> </span>sync<span class="w"> </span>--clean
-<a id="__codelineno-12-6" name="__codelineno-12-6"></a>
-<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="c1"># 仅更新指定依赖（如升级 pandas）</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8"></a>uv<span class="w"> </span>sync<span class="w"> </span>--upgrade-package<span class="w"> </span>pandas
+uv的声明式安装方式（推荐）：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>uv<span class="w"> </span>add<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div></td></tr></table></div></p>
+<h2 id="_10">修复/更改依赖环境</h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">6</a></span>
+<span class="normal"><a href="#__codelineno-14-7">7</a></span>
+<span class="normal"><a href="#__codelineno-14-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="c1"># 修改 pyproject.toml 后同步环境</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>uv<span class="w"> </span>sync
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="c1"># 强制重建虚拟环境（忽略现有缓存）</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a>uv<span class="w"> </span>sync<span class="w"> </span>--clean
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="c1"># 仅更新指定依赖（如升级 pandas）</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a>uv<span class="w"> </span>sync<span class="w"> </span>--upgrade-package<span class="w"> </span>pandas
 </code></pre></div></td></tr></table></div>
 
 
