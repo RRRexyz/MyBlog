@@ -1027,58 +1027,13 @@
   <div class="md-post__content md-typeset">
     <h2 id="ros2"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">ROS2基本操作</a></h2>
 <p>使用Ubuntu24.04，安装ROS2 Jazzy，其基本操作命令与ROS1有显著区别，此帖记录ROS2主要命令。</p>
-<!-- more-->
 
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>ROS2 命令支持Bash，Zsh，对Fish的适配很差，建议使用Bash或Zsh。</p>
-</div>
-<h3 id="ros2_1"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#ros2_1">激活ROS2环境</a></h3>
-<p>需要在终端中运行
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="nb">source</span><span class="w"> </span>/opt/ros/jazzy/setup.bash
-</code></pre></div></td></tr></table></div>
-为了方便，可以将上述命令写入<code>.bashrc</code>文件中，以后打开终端就自动激活ROS2环境。</p>
-<h3 id="ros2_2"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#ros2_2">启动ROS2节点</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>package_name<span class="w"> </span>node_name
-</code></pre></div></td></tr></table></div>
-<h3 id="_1"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#_1">查看系统结构</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>rqt_graph
-</code></pre></div></td></tr></table></div>
-<h3 id="_2"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#_2">查看当前话题</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>list
-</code></pre></div></td></tr></table></div>
-<h3 id="_3"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#_3">查看当前服务</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>ros2<span class="w"> </span>service<span class="w"> </span>list
-</code></pre></div></td></tr></table></div>
-<h3 id="_4"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#_4">发布话题</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/topic_name<span class="w"> </span>topic_type<span class="w"> </span><span class="s2">&quot;message&quot;</span>
-</code></pre></div></td></tr></table></div>
-<p>限制发送一次：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>&lt;话题名称&gt;<span class="w"> </span>&lt;消息类型&gt;<span class="w"> </span><span class="s1">&#39;&lt;消息内容&gt;&#39;</span>
-</code></pre></div></td></tr></table></div></p>
-<p>按固定频率发送消息：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--rate<span class="w"> </span>&lt;频率&gt;<span class="w"> </span>&lt;话题名称&gt;<span class="w"> </span>&lt;消息类型&gt;<span class="w"> </span><span class="s1">&#39;&lt;消息内容&gt;&#39;</span>
-</code></pre></div></td></tr></table></div></p>
-<p>示例：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/turtle1/cmd_vel<span class="w"> </span>geometry_msgs/msg/Twist<span class="w"> </span><span class="s2">&quot;{linear: {x: 1.0}, angular: {z: 0.5}}&quot;</span><span class="w"> </span>--once
-</code></pre></div></td></tr></table></div></p>
-<h3 id="_5"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#_5">输出话题</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/topic_name
-</code></pre></div></td></tr></table></div>
-<h3 id="_6"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#_6">调用服务</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/service_name<span class="w"> </span>service_type<span class="w"> </span><span class="s2">&quot;request&quot;</span>
-</code></pre></div></td></tr></table></div>
-<h3 id="mimic"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#mimic">mimic输入输出重映射</a></h3>
-<p>在ROS2中，<code>mimic</code>节点的输入输出话题名称和参数传递方式与ROS1不同。ROS2的等效命令为：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>mimic<span class="w"> </span>--ros-args<span class="w"> </span>--remap<span class="w"> </span>input/pose:<span class="o">=</span>turtle1/pose<span class="w"> </span>--remap<span class="w"> </span>output/cmd_vel:<span class="o">=</span>turtle2/cmd_vel
-</code></pre></div></td></tr></table></div></p>
-<h3 id="_7"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#_7">查看话题消息类型</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">type</span><span class="w"> </span>/topic_name
-</code></pre></div></td></tr></table></div>
-<h3 id="_8"><a class="toclink" href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html#_8">查看消息接口说明</a></h3>
-<p>ROS2 将消息（msg）、服务（srv）和动作（action）统一归类为接口，因此相关命令从 <code>rosmsg</code> 改为 <code>ros2 interface</code>。
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>ros2<span class="w"> </span>interface<span class="w"> </span>show<span class="w"> </span>/msg_name
-</code></pre></div></td></tr></table></div></p>
+    
+      <nav class="md-post__action">
+        <a href="../2025/03/24/ros2%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">
+          继续阅读
+        </a>
+      </nav>
     
   </div>
 </article>
