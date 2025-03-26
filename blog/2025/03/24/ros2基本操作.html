@@ -926,6 +926,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      录制运动过程
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1074,37 +1083,48 @@
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>list
 </code></pre></div></td></tr></table></div>
 <h2 id="_3">查看当前服务</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>ros2<span class="w"> </span>service<span class="w"> </span>list
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>ros2<span class="w"> </span>service<span class="w"> </span>list
 </code></pre></div></td></tr></table></div>
+如果要显示类型：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>ros2<span class="w"> </span>service<span class="w"> </span>list<span class="w"> </span>-t
+</code></pre></div></td></tr></table></div></p>
 <h2 id="_4">发布话题</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/topic_name<span class="w"> </span>topic_type<span class="w"> </span><span class="s2">&quot;message&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/topic_name<span class="w"> </span>topic_type<span class="w"> </span><span class="s2">&quot;message&quot;</span>
 </code></pre></div></td></tr></table></div>
 <p>限制发送一次：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>&lt;话题名称&gt;<span class="w"> </span>&lt;消息类型&gt;<span class="w"> </span><span class="s1">&#39;&lt;消息内容&gt;&#39;</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>&lt;话题名称&gt;<span class="w"> </span>&lt;消息类型&gt;<span class="w"> </span><span class="s1">&#39;&lt;消息内容&gt;&#39;</span>
 </code></pre></div></td></tr></table></div></p>
 <p>按固定频率发送消息：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--rate<span class="w"> </span>&lt;频率&gt;<span class="w"> </span>&lt;话题名称&gt;<span class="w"> </span>&lt;消息类型&gt;<span class="w"> </span><span class="s1">&#39;&lt;消息内容&gt;&#39;</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--rate<span class="w"> </span>&lt;频率&gt;<span class="w"> </span>&lt;话题名称&gt;<span class="w"> </span>&lt;消息类型&gt;<span class="w"> </span><span class="s1">&#39;&lt;消息内容&gt;&#39;</span>
 </code></pre></div></td></tr></table></div></p>
 <p>示例：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/turtle1/cmd_vel<span class="w"> </span>geometry_msgs/msg/Twist<span class="w"> </span><span class="s2">&quot;{linear: {x: 1.0}, angular: {z: 0.5}}&quot;</span><span class="w"> </span>--once
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/turtle1/cmd_vel<span class="w"> </span>geometry_msgs/msg/Twist<span class="w"> </span><span class="s2">&quot;{linear: {x: 1.0}, angular: {z: 0.5}}&quot;</span><span class="w"> </span>--once
 </code></pre></div></td></tr></table></div></p>
 <h2 id="_5">输出话题</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/topic_name
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/topic_name
 </code></pre></div></td></tr></table></div>
 <h2 id="_6">调用服务</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/service_name<span class="w"> </span>service_type<span class="w"> </span><span class="s2">&quot;request&quot;</span>
+<p>ROS2必须显式指定服务类型，否则会报错。
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/service_name<span class="w"> </span>service_type<span class="w"> </span><span class="s2">&quot;request&quot;</span>
 </code></pre></div></td></tr></table></div>
+示例：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/spawn<span class="w"> </span>turtlesim/srv/Spawn<span class="w"> </span><span class="s2">&quot;{x: 3.0, y: 3.0, theta: 0.0, name: &#39;turtle2&#39;}&quot;</span>
+</code></pre></div></td></tr></table></div></p>
 <h2 id="mimic">mimic输入输出重映射</h2>
 <p>在ROS2中，<code>mimic</code>节点的输入输出话题名称和参数传递方式与ROS1不同。ROS2的等效命令为：
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>mimic<span class="w"> </span>--ros-args<span class="w"> </span>--remap<span class="w"> </span>input/pose:<span class="o">=</span>turtle1/pose<span class="w"> </span>--remap<span class="w"> </span>output/cmd_vel:<span class="o">=</span>turtle2/cmd_vel
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>mimic<span class="w"> </span>--ros-args<span class="w"> </span>--remap<span class="w"> </span>input/pose:<span class="o">=</span>turtle1/pose<span class="w"> </span>--remap<span class="w"> </span>output/cmd_vel:<span class="o">=</span>turtle2/cmd_vel
 </code></pre></div></td></tr></table></div></p>
 <h2 id="_7">查看话题消息类型</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">type</span><span class="w"> </span>/topic_name
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">type</span><span class="w"> </span>/topic_name
 </code></pre></div></td></tr></table></div>
 <h2 id="_8">查看消息接口说明</h2>
 <p>ROS2 将消息（msg）、服务（srv）和动作（action）统一归类为接口，因此相关命令从 <code>rosmsg</code> 改为 <code>ros2 interface</code>。
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>ros2<span class="w"> </span>interface<span class="w"> </span>show<span class="w"> </span>/msg_name
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>ros2<span class="w"> </span>interface<span class="w"> </span>show<span class="w"> </span>/msg_name
 </code></pre></div></td></tr></table></div></p>
+<h2 id="_9">录制运动过程</h2>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>-a<span class="w"> </span>-o<span class="w"> </span>bag_name
+</code></pre></div></td></tr></table></div>
+其中<code>-a</code>参数表示记录所有话题，<code>-o</code>参数指定输出文件名。</p>
 
 
 
