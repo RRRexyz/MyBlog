@@ -18,6 +18,7 @@ hide:
     - <a href="https://www.draw.io/" target="_blank">draw.io 画图工具</a>
     - <a href="https://www.geogebra.org/ " target="_blank">GeoGebra 计算器套件</a>
     - <a href="https://onebox.tools/zh" target="_blank">免费在线工具箱 - 为开发者、设计师和日常任务 提供便捷工具</a>
+    - <a href="https://toolonline.net/emoji" target="_blank">Emoji 表情包大全（可直接复制）</a>
 </div>
 
 
