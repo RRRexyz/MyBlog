@@ -257,7 +257,6 @@ dependencies = [
     { name = "requests" },
     { name = "six" },
     { name = "urllib3" },
-    { name = "watchdog" },
 ]
 
 [package.metadata]
@@ -291,7 +290,6 @@ requires-dist = [
     { name = "requests", specifier = "==2.32.3" },
     { name = "six", specifier = "==1.17.0" },
     { name = "urllib3", specifier = "==2.3.0" },
-    { name = "watchdog", specifier = "==6.0.0" },
 ]
 
 [[package]]

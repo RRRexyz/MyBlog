@@ -13,7 +13,6 @@ nav:
     - collect/index.md
 
 plugins:
-  # - glightbox
   - search
   - offline
   - blog:
@@ -21,7 +20,7 @@ plugins:
       draft: true
       draft_if_future_date: true #自动将具有未来日期的帖子标记为草稿
       post_readtime: true
-      post_readtime_words_per_minute: 265  #计算帖子的阅读时间时读者每分钟预计阅读的字数
+      post_readtime_words_per_minute: 150  #计算帖子的阅读时间时读者每分钟预计阅读的字数
       post_url_format: "{date}/{slug}"
       categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
