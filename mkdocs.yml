@@ -8,9 +8,11 @@ nav:
     - blog/index.md
     - 标签归类: tag.md
   - 作品:
-    - work/index.md
+    - special-topic/work/index.md
+  # - 旅行:
+  #   - https://rrrexyz.github.io/my-travel-1
   - 收藏:
-    - collect/index.md
+    - special-topic/collect/index.md
 
 plugins:
   - search
