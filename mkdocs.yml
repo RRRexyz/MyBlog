@@ -9,8 +9,9 @@ nav:
     - 标签归类: tag.md
   - 作品:
     - special-topic/work/index.md
-  # - 旅行:
-  #   - https://rrrexyz.github.io/my-travel-1
+  - 旅行:
+    - special-topic/travel/index.md
+    - 泰山: special-topic/travel/泰山.md
   - 收藏:
     - special-topic/collect/index.md
 
