@@ -271,7 +271,12 @@ div.md-content header {
   color: #0d9922;
 }
 
-.md-typeset h2, h3, h4, h5, h6 {
+.md-typeset h2, .md-typeset h3, .md-typeset h4, .md-typeset h5, .md-typeset h6 {
   /* text-decoration: underline; */
   font-weight: bold;
+}
+
+.travel-time {
+  font-size: 1rem;
+  color: #518FC1;
 }
