@@ -965,6 +965,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#mavros" class="md-nav__link">
+    <span class="md-ellipsis">
+      MAVROS安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#px4" class="md-nav__link">
+    <span class="md-ellipsis">
+      PX4配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xtdrone" class="md-nav__link">
+    <span class="md-ellipsis">
+      XTDrone源码下载
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -972,6 +999,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置并控制多旋翼无人机
+    </span>
+  </a>
   
 </li>
       
@@ -1060,7 +1096,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 2 分钟阅读时间
+                              需要 4 分钟阅读时间
                             
                           </span>
                         </div>
@@ -1141,6 +1177,108 @@
 <p>然后安装需要的依赖
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-noetic-moveit-msgs<span class="w"> </span>ros-noetic-object-recognition-msgs<span class="w"> </span>ros-noetic-octomap-msgs<span class="w"> </span>ros-noetic-camera-info-manager<span class="w">  </span>ros-noetic-control-toolbox<span class="w"> </span>ros-noetic-polled-camera<span class="w"> </span>ros-noetic-controller-manager<span class="w"> </span>ros-noetic-transmission-interface<span class="w"> </span>ros-noetic-joint-limits-interface
 </code></pre></div></td></tr></table></div></p>
+<p>然后克隆并编译Gazebo的插件gazebo_ros_pkgs，放在<code>~/catkin_ws/src</code>下。
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>~/catkin_ws
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/XTDrone/sitl_config/gazebo_ros_pkgs<span class="w"> </span>src/
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>catkin<span class="w"> </span>build<span class="w"> </span><span class="c1">#开发者测试使用catkin_make会出问题，因此建议使用catkin build</span>
+</code></pre></div></td></tr></table></div></p>
+<h4 id="mavros">MAVROS安装</h4>
+<p>这是用于视觉定位的依赖。
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-noetic-mavros<span class="w"> </span>ros-noetic-mavros-extras
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>wget<span class="w"> </span>https://gitee.com/robin_shaun/XTDrone/raw/master/sitl_config/mavros/install_geographiclib_datasets.sh
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>sudo<span class="w"> </span>chmod<span class="w"> </span>a+x<span class="w"> </span>./install_geographiclib_datasets.sh
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>sudo<span class="w"> </span>./install_geographiclib_datasets.sh<span class="w"> </span><span class="c1">#这步需要装一段时间</span>
+</code></pre></div></td></tr></table></div></p>
+<h4 id="px4">PX4配置</h4>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/PX4/PX4-Autopilot.git
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>mv<span class="w"> </span>PX4-Autopilot<span class="w"> </span>PX4_Firmware
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="nb">cd</span><span class="w"> </span>PX4_Firmware
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>xtdrone/dev<span class="w"> </span>v1.13.2
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>make<span class="w"> </span>px4_sitl_default<span class="w"> </span>gazebo
+</code></pre></div></td></tr></table></div>
+编译完成后，会弹出Gazebo界面，将其关闭即可。</p>
+<p>接下来修改 <code>~/.bashrc</code>，使得每次开启终端自动设置相应的环境变量。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">.bashrc</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nb">source</span><span class="w"> </span>~/catkin_ws/devel/setup.bash
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="nb">source</span><span class="w"> </span>~/PX4_Firmware/Tools/setup_gazebo.bash<span class="w"> </span>~/PX4_Firmware/<span class="w"> </span>~/PX4_Firmware/build/px4_sitl_default
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_PACKAGE_PATH</span><span class="o">=</span><span class="nv">$ROS_PACKAGE_PATH</span>:~/PX4_Firmware
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_PACKAGE_PATH</span><span class="o">=</span><span class="nv">$ROS_PACKAGE_PATH</span>:~/PX4_Firmware/Tools/sitl_gazebo
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<h4 id="xtdrone">XTDrone源码下载</h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://gitee.com/robin_shaun/XTDrone.git
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="nb">cd</span><span class="w"> </span>XTDrone
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>git<span class="w"> </span>checkout<span class="w"> </span>1_13_2
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="c1"># 修改启动脚本文件</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>cp<span class="w"> </span>sitl_config/init.d-posix/*<span class="w"> </span>~/PX4_Firmware/ROMFS/px4fmu_common/init.d-posix/
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="c1"># 添加launch文件</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>cp<span class="w"> </span>-r<span class="w"> </span>sitl_config/launch/*<span class="w"> </span>~/PX4_Firmware/launch/
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="c1"># 添加世界文件</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>cp<span class="w"> </span>sitl_config/worlds/*<span class="w"> </span>~/PX4_Firmware/Tools/sitl_gazebo/worlds/
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="c1"># 修改部分插件</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a>cp<span class="w"> </span>sitl_config/gazebo_plugin/gimbal_controller/gazebo_gimbal_controller_plugin.cpp<span class="w"> </span>~/PX4_Firmware/Tools/sitl_gazebo/src
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a>cp<span class="w"> </span>sitl_config/gazebo_plugin/gimbal_controller/gazebo_gimbal_controller_plugin.hh<span class="w"> </span>~/PX4_Firmware/Tools/sitl_gazebo/include
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a>cp<span class="w"> </span>sitl_config/gazebo_plugin/wind_plugin/gazebo_ros_wind_plugin_xtdrone.cpp<span class="w"> </span>~/PX4_Firmware/Tools/sitl_gazebo/src
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a>cp<span class="w"> </span>sitl_config/gazebo_plugin/wind_plugin/gazebo_ros_wind_plugin_xtdrone.h<span class="w"> </span>~/PX4_Firmware/Tools/sitl_gazebo/include
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="c1"># 修改CMakeLists.txt</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a>cp<span class="w"> </span>sitl_config/CMakeLists.txt<span class="w"> </span>~/PX4_Firmware/Tools/sitl_gazebo
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="c1"># 修改部分模型文件</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a>cp<span class="w"> </span>-r<span class="w"> </span>sitl_config/models/*<span class="w"> </span>~/PX4_Firmware/Tools/sitl_gazebo/models/<span class="w"> </span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="c1"># 替换同名文件</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="nb">cd</span><span class="w"> </span>~/.gazebo/models/
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a>rm<span class="w"> </span>-r<span class="w"> </span>stereo_camera/<span class="w"> </span>3d_lidar/<span class="w"> </span>3d_gpu_lidar/<span class="w"> </span>hokuyo_lidar/
+</code></pre></div></td></tr></table></div>
+<p>删除原编译文件，重新编译PX4固件:
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>~/PX4_Firmware
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>rm<span class="w"> </span>-r<span class="w"> </span>build/
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>make<span class="w"> </span>px4_sitl_default<span class="w"> </span>gazebo
+</code></pre></div></td></tr></table></div></p>
+<p>至此基础环境已经搭建完成。</p>
+<h2 id="_7">配置并控制多旋翼无人机</h2>
 
 
 
