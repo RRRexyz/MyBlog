@@ -935,6 +935,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="仿真平台基础配置（对应PX4 1.13版）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      依赖安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gazebo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gazebo安装
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1027,7 +1060,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 1 分钟阅读时间
+                              需要 2 分钟阅读时间
                             
                           </span>
                         </div>
@@ -1081,6 +1114,33 @@
 <h3 id="_5">操作系统选择</h3>
 <p>XTDrone项目基于ROS1开发，因此首先要安装一个支持ROS1的Ubuntu系统，这里就选择我们最最熟悉的Ubuntu 20.04 LTS版本了。由于该仿真平台中有大量非常庞大的rviz和gazebo等仿真文件，因此在我这台16G内存的电脑的虚拟机中运行恐怕会经常出现卡死崩溃的情景。好在我们有黑科技——WSL(2)。其本质上也是一种虚拟机，可以安装Linux的发行版（服务器版），由于没有图形界面且微软对其进行了大量优化，使其性能可以比VMWare等虚拟机高好几倍，并且虽然系统自身不带有图形界面，却可以通过Linux Gui技术来打开图形化的软件，再结合VSCode的远程开发功能，几乎可以说做到了让我们“在Windows系统下进行ROS开发”。</p>
 <h3 id="px4-113">仿真平台基础配置（对应PX4 1.13版）</h3>
+<h4 id="_6">依赖安装</h4>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ninja-build<span class="w"> </span>exiftool<span class="w"> </span>ninja-build<span class="w"> </span>protobuf-compiler<span class="w"> </span>libeigen3-dev<span class="w"> </span>genromfs<span class="w"> </span>xmlstarlet<span class="w"> </span>libgstreamer1.0-dev<span class="w"> </span>libgstreamer-plugins-base1.0-dev<span class="w"> </span>python3-pip<span class="w"> </span>gawk
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>pip2<span class="w"> </span>install<span class="w"> </span>pandas<span class="w"> </span>jinja2<span class="w"> </span>pyserial<span class="w"> </span>cerberus<span class="w"> </span><span class="nv">pyulog</span><span class="o">==</span><span class="m">0</span>.7.0<span class="w"> </span>numpy<span class="w"> </span>toml<span class="w"> </span>pyquaternion<span class="w"> </span>empy<span class="w"> </span>pyyaml<span class="w"> </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>pip3<span class="w"> </span>install<span class="w"> </span>packaging<span class="w"> </span>numpy<span class="w"> </span>empy<span class="w"> </span>toml<span class="w"> </span>pyyaml<span class="w"> </span>jinja2<span class="w"> </span>pyargparse<span class="w"> </span>kconfiglib<span class="w"> </span>jsonschema<span class="w"> </span>future
+</code></pre></div></td></tr></table></div></p>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>在整个环境配置中,不要轻易使用 <code>apt autoremove</code>或者<code>apt-get autoremove</code>命令，因为这可能会误删某些必要的依赖包。</p>
+</div>
+<h4 id="ros">ROS安装</h4>
+<p>Ubuntu 20.04 LTS系统支持的ROS1版本为Noetic，这里我们使用小鱼一键安装脚本来安装ROS Noetic。
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>wget<span class="w"> </span>http://fishros.com/install<span class="w"> </span>-O<span class="w"> </span>fishros<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>.<span class="w"> </span>fishros
+</code></pre></div></td></tr></table></div></p>
+<h4 id="gazebo">Gazebo安装</h4>
+<p>由于XTDrone项目中对Gazebo的ROS插件做了修改，所以需要从源码进行编译安装。</p>
+<p>首先卸载安装ROS Noetic默认的Gazebo：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>gazebo*<span class="w"> </span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>libgazebo*
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>ros-noetic-gazebo*
+</code></pre></div></td></tr></table></div></p>
+<p>然后安装需要的依赖
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-noetic-moveit-msgs<span class="w"> </span>ros-noetic-object-recognition-msgs<span class="w"> </span>ros-noetic-octomap-msgs<span class="w"> </span>ros-noetic-camera-info-manager<span class="w">  </span>ros-noetic-control-toolbox<span class="w"> </span>ros-noetic-polled-camera<span class="w"> </span>ros-noetic-controller-manager<span class="w"> </span>ros-noetic-transmission-interface<span class="w"> </span>ros-noetic-joint-limits-interface
+</code></pre></div></td></tr></table></div></p>
 
 
 
