@@ -1270,6 +1270,10 @@
 <a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="nb">cd</span><span class="w"> </span>~/.gazebo/models/
 <a id="__codelineno-9-22" name="__codelineno-9-22"></a>rm<span class="w"> </span>-r<span class="w"> </span>stereo_camera/<span class="w"> </span>3d_lidar/<span class="w"> </span>3d_gpu_lidar/<span class="w"> </span>hokuyo_lidar/
 </code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">坑点</p>
+<p>因为Gazebo寻找模型的顺序，是先在<code>~/.gazebo/models/</code>下寻找，然后在其他路径寻找，所以在往PX4 SITL复制models时，要注意<code>~/.gazebo/models/</code>下有没有同名文件（比如<code>~/.gazebo/models/</code>下默认有stereo_camera），有的话要么将该同名文件删去，要么替换该同名文件。如果在仿真过程中出现了某个部件为白色方块的情况，大概率是因为<code>~/.gazebo/models/</code>下有和PX4_Firmware/Tools/sitl_gazebo/models重复的模型，此时删掉<code>~/.gazebo/models/</code>下的模型文件即可。</p>
+</div>
 <p>删除原编译文件，重新编译PX4固件:
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
 <span class="normal"><a href="#__codelineno-10-2">2</a></span>
