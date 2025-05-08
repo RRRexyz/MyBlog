@@ -1005,9 +1005,42 @@
         <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      配置并控制多旋翼无人机
+      选择无人机模型
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vio" class="md-nav__link">
+    <span class="md-ellipsis">
+      视觉惯性里程计（VIO）算法环境配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="视觉惯性里程计（VIO）算法环境配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      依赖安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vins-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      编译VINS-Fusion源码
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1096,7 +1129,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 4 分钟阅读时间
+                              需要 5 分钟阅读时间
                             
                           </span>
                         </div>
@@ -1282,7 +1315,52 @@
 <a id="__codelineno-10-3" name="__codelineno-10-3"></a>make<span class="w"> </span>px4_sitl_default<span class="w"> </span>gazebo
 </code></pre></div></td></tr></table></div></p>
 <p>至此基础环境已经搭建完成。</p>
-<h2 id="_7">配置并控制多旋翼无人机</h2>
+<h2 id="_7">选择无人机模型</h2>
+<p>XTDrone提供了多种型号的无人机（车），这里我们选择多旋翼无人机<u>iris</u>模型作为仿真对象，因为项目中有其附带各种相机及激光雷达的模型文件，具有很强的扩展性。</p>
+<h2 id="vio">视觉惯性里程计（VIO）算法环境配置</h2>
+<p>在XTDrone通过开源框架VINS-Fusion（一个基于优化的多传感器融合的全局位姿估计框架）来实现VIO算法。</p>
+<p>论文地址：<a href="https://arxiv.org/pdf/1901.03642">A General Optimization-based Framework for Global
+ Pose Estimation with Multiple Sensors</a></p>
+<p>GitHub仓库地址：<a href="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion">https://github.com/HKUST-Aerial-Robotics/VINS-Fusion</a></p>
+<h3 id="_8">依赖安装</h3>
+<p>VINS-Fusion项目依赖开源C++库Ceres-solver来求解具有边界约束的非线性最小二乘问题以及一般的无约束优化问题。</p>
+<p>首先安装VINS-Fusion所需的依赖：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span>
+<span class="normal"><a href="#__codelineno-11-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1"># google-glog + gflags</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libgoogle-glog-dev<span class="w"> </span>libgflags-dev
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="c1"># Use ATLAS for BLAS &amp; LAPACK</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libatlas-base-dev
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="c1"># Eigen3</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libeigen3-dev
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="c1"># SuiteSparse (optional)</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libsuitesparse-dev
+</code></pre></div></td></tr></table></div></p>
+<p>然后从GitHub下载VINS-Fusion项目的源码进行编译。</p>
+<div class="admonition danger">
+<p class="admonition-title">踩坑</p>
+<p>需要注意的是由于环境中安装的OpenCV和Eigen版本都比较老，这里不能安装过高版本，推荐的是安装1.14.0版本。我一开始安装了最新的2.2.0版本，然后捣鼓了半天还是不行😇</p>
+</div>
+<p>1.14.0版本下载地址：<a href="https://ceres-solver.googlesource.com/ceres-solver/+/refs/tags/1.14.0">https://ceres-solver.googlesource.com/ceres-solver/+/refs/tags/1.14.0</a></p>
+<p>下载解压后将其放到<code>~/dependencies</code>目录下。随后
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span>~/dependencies/ceres-solver-1.14.0
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>mkdir<span class="w"> </span>build
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="nb">cd</span><span class="w"> </span>build
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>cmake<span class="w"> </span>..
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>make<span class="w"> </span>-j4
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
+</code></pre></div></td></tr></table></div></p>
+<h3 id="vins-fusion">编译VINS-Fusion源码</h3>
 
 
 
