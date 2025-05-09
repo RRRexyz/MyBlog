@@ -1039,6 +1039,57 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#px4ekf" class="md-nav__link">
+    <span class="md-ellipsis">
+      PX4飞控EKF配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vins-fusion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改VINS-Fusion仿真配置文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rtabmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      RTABMap环境配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RTABMap环境配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rtabmap_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装RTABMap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rtabmap_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置RTABMap
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1129,7 +1180,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 5 分钟阅读时间
+                              需要 7 分钟阅读时间
                             
                           </span>
                         </div>
@@ -1361,6 +1412,72 @@
 <a id="__codelineno-12-6" name="__codelineno-12-6"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div></td></tr></table></div></p>
 <h3 id="vins-fusion">编译VINS-Fusion源码</h3>
+<p>创建<code>~/xtdrone_ws</code>目录作为工作空间（因为<code>catkin_ws</code>目录用于其余项目了，为了防止冲突重新建一个），随后运行</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/XTDrone/sensing/slam/vio/VINS-Fusion<span class="w"> </span>~/xtdrone_ws/src/
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/xtdrone_ws/scripts/
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>cp<span class="w"> </span>~/XTDrone/sensing/slam/vio/xtdrone_run_vio.sh<span class="w"> </span>~/xtdrone_ws/scripts/
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="nb">cd</span><span class="w"> </span>~/xtdrone_ws
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a>catkin_make<span class="w"> </span><span class="c1">#或catkin build，取决于您的编译工具</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="px4ekf">PX4飞控EKF配置</h3>
+<p>PX4默认使用的EKF配置为融合GPS的水平位置与气压计高度。如果我们想使用视觉定位，就需要把修改配置文件。</p>
+<p>对于1.13版本，可以直接修改编译后的rcS文件，即<code>~/PX4_Firmware/build/px4_sitl_default/etc/init.d-posix/rcS</code>。将<code>EKF2_AID_MASK</code>参数的值从默认的<code>1</code>改为<code>24</code>，<code>EKF2_HGT_MODE</code>参数的值从默认的<code>0</code>改为<code>3</code>。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">6</a></span>
+<span class="normal"><a href="#__codelineno-14-7">7</a></span>
+<span class="normal"><a href="#__codelineno-14-8">8</a></span>
+<span class="normal"><a href="#__codelineno-14-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a># GPS used
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a># param set EKF2_AID_MASK 1
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a># Vision used and GPS denied
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a>param set EKF2_AID_MASK 24
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a># Barometer used for hight measurement
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a># param set EKF2_HGT_MODE 0
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a># Barometer denied and vision used for hight measurement
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a>param set EKF2_HGT_MODE 3
+</code></pre></div></td></tr></table></div>
+<h3 id="vins-fusion_1">修改VINS-Fusion仿真配置文件</h3>
+<p>打开<code>~/xtdrone_ws/src/VINS-Fusion/config/xtdrone_sitl/px4_sitl_stereo_imu_config.yaml</code>文件。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span>
+<span class="normal"><a href="#__codelineno-15-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="nt">imu_topic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/iris_0/imu_gazebo&quot;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="nt">image0_topic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/iris_0/stereo_camera/left/image_raw&quot;</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="nt">image1_topic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/iris_0/stereo_camera/right/image_raw&quot;</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="nt">output_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/xtdrone_ws/vins_output&quot;</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="nt">pose_graph_save_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/xtdrone_ws/vins_output/pose_graph/&quot;</span><span class="w">  </span><span class="c1"># save and load path</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="rtabmap">RTABMap环境配置</h2>
+<p>VIO获得的是稀疏点云，无法运用于避障与运动规划。为此，需要把视觉里程计与深度相机的深度图进行融合，从而进行三维稠密重建，这里采用的是RTABMap进行SLAM建图和导航。</p>
+<h3 id="rtabmap_1">安装RTABMap</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-noetic-rtabmap*<span class="w"> </span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-noetic-octomap*
+</code></pre></div></td></tr></table></div>
+<h3 id="rtabmap_2">配置RTABMap</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>sudo<span class="w"> </span>cp<span class="w"> </span>~/XTDrone/sensing/slam/vio/VINS-Fusion/config/xtdrone_sitl/rgbd.rviz<span class="w"> </span>~/xtdrone_ws/src/VINS-Fusion/config/rgbd.rviz
+</code></pre></div></td></tr></table></div>
+<p>打开<code>/opt/ros/noetic/share/rtabmap_ros/launch/rtabmap.launch</code>文件：
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>sudo<span class="w"> </span>vim<span class="w"> </span>/opt/ros/noetic/share/rtabmap_ros/launch/rtabmap.launch
+</code></pre></div></td></tr></table></div></p>
+<p>修改其中的<code>rviz_cfg</code>参数，将其指向上面发处的<code>rgbd.rviz</code>文件的绝对地址。
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">XML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rviz_cfg&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;~/xtdrone_ws/src/VINS-Fusion/config/rgbd.rviz&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</code></pre></div></td></tr></table></div></p>
 
 
 
