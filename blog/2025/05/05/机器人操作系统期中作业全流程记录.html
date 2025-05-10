@@ -1132,6 +1132,51 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#vins-fusion_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动VINS-Fusion进行视觉定位
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      定位信息话题转换
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rtabmap_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动RTABMap进行三维稠密地图重建
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      用键盘控制无人机起飞并悬停
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ego_planner_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动ego_planner进行三维运动规划
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1222,7 +1267,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 7 分钟阅读时间
+                              需要 8 分钟阅读时间
                             
                           </span>
                         </div>
@@ -1534,10 +1579,82 @@
 <p>打开<code>~/PX4_Firmware/launch/indoor4.launch</code>文件，修改其中的<code>sdf</code>参数为装备深度相机的iris无人机。</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">XML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sdf&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;iris_realsense_camera&quot;</span><span class="nt">/&gt;</span>
 </code></pre></div></td></tr></table></div>
+<p>打开<code>~/xtdrone_ws/scripts/xtdrone_run_vio.sh</code>文件，将启动vins_rviz的语句注释掉，因为该rviz仿真生成的稀疏点云，对后续运动规划没有作用。
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a>rosrun<span class="w"> </span>vins<span class="w"> </span>vins_node<span class="w"> </span>~/xtdrone_ws/src/VINS-Fusion/config/xtdrone_sitl/px4_sitl_stereo_imu_config.yaml<span class="w"> </span><span class="p">&amp;</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="c1"># roslaunch vins vins_rviz.launch</span>
+</code></pre></div></td></tr></table></div></p>
+<p>打开<code>~/xtdrone_ws/src/ego_planner/plan_manage/launch/run_in_xtdrone.launch</code>文件，将其中的<code>flight_type</code>参数改为<code>1</code>，表示使用2D Nav Goal进行目标点选择。
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">XML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="cm">&lt;!-- 1: use 2D Nav Goal to select goal  --&gt;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="cm">&lt;!-- 2: use global waypoints below  --&gt;</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;flight_type&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</code></pre></div></td></tr></table></div></p>
 <h3 id="gazebo_1">启动gazebo仿真世界</h3>
-<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a>roslaunch<span class="w"> </span>px4<span class="w"> </span>indoor4.launch
+<p>打开第一个终端运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>roslaunch<span class="w"> </span>px4<span class="w"> </span>indoor4.launch
 </code></pre></div></td></tr></table></div>
 第一次打开时会花费较长的时间加载资源，后续再次打开则会显著变快。</p>
+<h3 id="vins-fusion_2">启动VINS-Fusion进行视觉定位</h3>
+<p>打开第二个终端运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="nb">source</span><span class="w"> </span>~/xtdrone_ws/devel/setup.bash
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="nb">cd</span><span class="w"> </span>~/xtdrone_ws/scripts
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a>sh<span class="w"> </span>xtdrone_run_vio.sh
+</code></pre></div></td></tr></table></div></p>
+<h3 id="_11">定位信息话题转换</h3>
+<p>由于VINS-Fusion发布的是Odometry类型的话题，我们要将其对应转为PX4所需的话题。
+打开第三个终端运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="nb">cd</span><span class="w"> </span>~/XTDrone/sensing/slam/vio
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a>python<span class="w"> </span>vins_transfer.py<span class="w"> </span>iris<span class="w"> </span><span class="m">0</span>
+</code></pre></div></td></tr></table></div></p>
+<p>现在视觉定位信息就通过mavros发到PX4，查看/iris_0/mavros/local_position/pose可以看到有正确的数据。</p>
+<h3 id="rtabmap_3">启动RTABMap进行三维稠密地图重建</h3>
+<p>打开第四个终端运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
+<span class="normal"><a href="#__codelineno-27-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="nb">source</span><span class="w"> </span>~/xtdrone_ws/devel/setup.bash
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a>roslaunch<span class="w"> </span>vins<span class="w"> </span>rtabmap_vins.launch
+</code></pre></div></td></tr></table></div></p>
+<h3 id="_12">用键盘控制无人机起飞并悬停</h3>
+<p>打开第五个终端运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="nb">cd</span><span class="w"> </span>~/XTDrone/communication
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a>python<span class="w"> </span>multirotor_communication.py<span class="w"> </span>iris<span class="w"> </span><span class="m">0</span><span class="w"> </span>
+</code></pre></div></td></tr></table></div>
+启动通信脚本，iris代表无人机子机型，0代表飞机的编号。</p>
+<p>打开第六个终端运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="nb">cd</span><span class="w"> </span>~/XTDrone/control/keyboard
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a>python<span class="w"> </span>multirotor_keyboard_control.py<span class="w"> </span>iris<span class="w"> </span><span class="m">1</span><span class="w"> </span>vel
+</code></pre></div></td></tr></table></div>
+启动键盘控制脚本，iris代表子机型，1代表飞机的个数，vel代表速度控制。</p>
+<p>将焦点切换到第六个终端，不断按<span class="keys"><kbd class="key-i">I</kbd></span>键将z方向的期望速度提升到0.3m/s以上，然后按<span class="keys"><kbd class="key-b">B</kbd></span>切到offboard模式，再按<span class="keys"><kbd class="key-t">T</kbd></span>解锁即可起飞，飞到合适的高度后，按<span class="keys"><kbd class="key-s">S</kbd></span>即可实现悬停。</p>
+<div class="admonition question">
+<p class="admonition-title">注意点</p>
+<p>将无人机悬停需要停止第六个终端中的键盘控制脚本，否则后影响后续自动路径规划。</p>
+</div>
+<h3 id="ego_planner_1">启动ego_planner进行三维运动规划</h3>
+<p>打开第七个终端运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="nb">cd</span><span class="w"> </span>~/XTDrone/motion_planning/3d
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a>python<span class="w"> </span>ego_transfer.py<span class="w"> </span>iris<span class="w"> </span><span class="m">0</span>
+</code></pre></div></td></tr></table></div>
+启动转换相机位姿坐标系方向的脚本。</p>
+<p>打开第八个终端运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="nb">cd</span><span class="w"> </span>~/XTDrone/motion_planning/3d
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a>rviz<span class="w"> </span>-d<span class="w"> </span>ego_rviz.rviz
+</code></pre></div></td></tr></table></div>
+启动路径规划的rviz仿真。</p>
+<p>打开第九个终端运行
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
+<span class="normal"><a href="#__codelineno-32-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="nb">source</span><span class="w"> </span>~/xtdrone_ws/devel/setup.bash
+<a id="__codelineno-32-2" name="__codelineno-32-2"></a>roslaunch<span class="w"> </span>ego_planner<span class="w"> </span>single_uav.launch<span class="w"> </span>
+</code></pre></div></td></tr></table></div>
+启动ego_planner进行路径规划。</p>
 
 
 
