@@ -1605,8 +1605,8 @@
 <a id="__codelineno-25-3" name="__codelineno-25-3"></a>sh<span class="w"> </span>xtdrone_run_vio.sh
 </code></pre></div></td></tr></table></div></p>
 <h3 id="_11">定位信息话题转换</h3>
-<p>由于VINS-Fusion发布的是Odometry类型的话题，我们要将其对应转为PX4所需的话题。
-打开第三个终端运行
+<p>由于VINS-Fusion发布的是Odometry类型的话题，我们要将其对应转为PX4所需的话题。</p>
+<p>打开第三个终端运行
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
 <span class="normal"><a href="#__codelineno-26-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="nb">cd</span><span class="w"> </span>~/XTDrone/sensing/slam/vio
 <a id="__codelineno-26-2" name="__codelineno-26-2"></a>python<span class="w"> </span>vins_transfer.py<span class="w"> </span>iris<span class="w"> </span><span class="m">0</span>
