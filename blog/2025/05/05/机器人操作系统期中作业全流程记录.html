@@ -1177,6 +1177,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      指定目的地自动路径规划与三维建图
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1655,8 +1664,12 @@
 <a id="__codelineno-32-2" name="__codelineno-32-2"></a>roslaunch<span class="w"> </span>ego_planner<span class="w"> </span>single_uav.launch<span class="w"> </span>
 </code></pre></div></td></tr></table></div>
 启动ego_planner进行路径规划。</p>
-<!-- ### 指定目的地自动路径规划与三维建图
-在rgbd.rviz -->
+<h3 id="_13">指定目的地自动路径规划与三维建图</h3>
+<p>在rgbd.rviz中选择2D Nav Goal模式，然后根据已经建立的三维地图选定目标点，引导无人机到达最终目的地。</p>
+<p>由于深度相机只能面朝前方，且视野范围有限，因此目前只能以距离当前位置不远处的点为目标地进行自动路径规划并同步建立沿途的三维地图，通过多次的目标点选择，逐步引导无人机走完全程并获得全局地图。否则ego_planner在规划路径时会无视不可见的障碍物并且无法根据新建立的地图部分及时更新路径，从而导致无人机撞墙。</p>
+<p>所以下一步的研究方向就是：</p>
+<p><ins class="critic">直接指定最终目标点，无人机在陌生环境中自由探索，边探索边建图，并最终抵达目的地。</ins></p>
+<p>由于时间问题，这一步暂时没有实现。🧐</p>
 
 
 
