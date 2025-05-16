@@ -1575,8 +1575,8 @@
 </code></pre></div></td></tr></table></div>
 <h2 id="_9">仿真启动流程</h2>
 <h3 id="_10">准备工作</h3>
-<p>ego_planner需要输入深度图+相机位姿或是点云，这里以深度图+相机位姿的组合为例进行仿真，深度图来源于realsense_camera，因此要把indoor4.launch的iris_stereo_camera换成iris_realsense_camera，相机位姿由VINS-Fusion计算得到。</p>
-<p>打开<code>~/PX4_Firmware/launch/indoor4.launch</code>文件，修改其中的<code>sdf</code>参数为装备深度相机的iris无人机。</p>
+<p>ego_planner需要输入深度图+相机位姿或是点云，这里以深度图+相机位姿的组合为例进行仿真，深度图来源于realsense_camera，因此要把launch文件中的iris_stereo_camera换成iris_realsense_camera，相机位姿由VINS-Fusion计算得到。这里我们选择zhihang2.world作为仿真世界。</p>
+<p>打开<code>~/PX4_Firmware/launch/zhihang2.launch</code>文件，修改其中的<code>sdf</code>参数为装备深度相机的iris无人机。</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">XML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sdf&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;iris_realsense_camera&quot;</span><span class="nt">/&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>打开<code>~/xtdrone_ws/scripts/xtdrone_run_vio.sh</code>文件，将启动vins_rviz的语句注释掉，因为该rviz仿真生成的稀疏点云，对后续运动规划没有作用。
@@ -1593,7 +1593,7 @@
 </code></pre></div></td></tr></table></div></p>
 <h3 id="gazebo_1">启动gazebo仿真世界</h3>
 <p>打开第一个终端运行
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>roslaunch<span class="w"> </span>px4<span class="w"> </span>indoor4.launch
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>roslaunch<span class="w"> </span>px4<span class="w"> </span>zhihang2.launch
 </code></pre></div></td></tr></table></div>
 第一次打开时会花费较长的时间加载资源，后续再次打开则会显著变快。</p>
 <h3 id="vins-fusion_2">启动VINS-Fusion进行视觉定位</h3>
@@ -1655,6 +1655,8 @@
 <a id="__codelineno-32-2" name="__codelineno-32-2"></a>roslaunch<span class="w"> </span>ego_planner<span class="w"> </span>single_uav.launch<span class="w"> </span>
 </code></pre></div></td></tr></table></div>
 启动ego_planner进行路径规划。</p>
+<!-- ### 指定目的地自动路径规划与三维建图
+在rgbd.rviz -->
 
 
 
